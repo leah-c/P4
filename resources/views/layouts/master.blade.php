@@ -21,7 +21,7 @@
 
   <div class="container">
     <header>
-      <h1 id="app_name">Expense Tracker</h1>z
+      <h1 id="app_name">Expense Tracker</h1>
     </header>
 
     <section>
