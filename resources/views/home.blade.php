@@ -19,6 +19,15 @@ such as a page specific stylesheets.
 @section('content')
 
   <p>Welcome to the expense tracker tool menu!</p>
+
+  <h2>Let's Get Started!</h2>
+  <p> Select from one of the following options. </p>
+  <ul>
+    <li class="expenseOp"><a href="#">Add an Expense</a></li>
+    <li class="expenseOp"><a href="#">Delete an Expense</a></li>
+    <li class="expenseOp"><a href="#">Update an Expense</a></li>
+    <li class="expenseOp"><a href="#">View Expenses</a></li>
+  </ul>
   <!--<h2>Lorem Ipsum Text Generator</h2>
   <p>The Lorem Ipsum Text Generator tool will give you some dummy filler text. </p>
   <a href ="generate_ipsum">Let's generate some Lorem Ipsum text!</a>
