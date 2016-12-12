@@ -2,76 +2,176 @@
 
 
 @section('title')
-  Expense Tracker
+Expense Tracker
 @endsection
 
 
 {{--
-This `head` section will be yielded right before the closing </head> tag.
-Use it to add specific things that *this* View needs in the head,
-such as a page specific stylesheets.
---}}
-@section('head')
+  This `head` section will be yielded right before the closing </head> tag.
+  Use it to add specific things that *this* View needs in the head,
+  such as a page specific stylesheets.
+  --}}
+  @section('head')
 
-@endsection
+  @endsection
 
 
-@section('content')
+  @section('content')
 
-<div class="container">
-  <div class="row centered-form">
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Please sign up for Bootsnipp <small>It's free!</small></h3>
-        </div>
-        <div class="panel-body">
-          <form role="form">
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6">
+  <div id="login-overlay" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">Expense Tracker Account Registration</h2>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="well">
+              <form id="loginForm" method="POST">
+
                 <div class="form-group">
-                  <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+                  <label for="name" class="cols-sm-2 control-label">First Name</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name"/>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6">
+
                 <div class="form-group">
-                  <input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+                  <label for="name" class="cols-sm-2 control-label">Last Name</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name"/>
+                    </div>
+                  </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="email" class="cols-sm-2 control-label">Email</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                      <input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="cols-sm-2 control-label">Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters."/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group ">
+                  <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                </div>
+                <div class="login-register">
+
+                </div>
+                <!--Commented below out to try out modal-->
+                <!--
+                <div class="container">
+                <div class="row main">
+                <div class="panel-heading">
+                <div class="panel-title text-center">
+                <h1 class="title">Expense Tracker</h1>
+                <hr />
               </div>
             </div>
+            <div class="main-login main-center">
+            <form class="form-horizontal" method="post" action="#">
 
             <div class="form-group">
-              <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
-            </div>
-
-            <div class="row">
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6">
-                <div class="form-group">
-                  <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
-                </div>
-              </div>
-            </div>
-
-            <input type="submit" value="Register" class="btn btn-info btn-block">
-
-          </form>
+            <label for="name" class="cols-sm-2 control-label">First Name</label>
+            <div class="cols-sm-10">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name"/>
+          </div>
         </div>
       </div>
+
+      <div class="form-group">
+      <label for="name" class="cols-sm-2 control-label">Last Name</label>
+      <div class="cols-sm-10">
+      <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name"/>
     </div>
   </div>
 </div>
 
+<div class="form-group">
+<label for="email" class="cols-sm-2 control-label">Email</label>
+<div class="cols-sm-10">
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+<input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email"/>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label for="password" class="cols-sm-2 control-label">Password</label>
+<div class="cols-sm-10">
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+<input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters."/>
+</div>
+</div>
+</div>
+
+<div class="form-group">
+<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+<div class="cols-sm-10">
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+<input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password"/>
+</div>
+</div>
+</div>
+
+<div class="form-group ">
+<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+</div>
+<div class="login-register">
+
+</div>
+-->
+
+
+
+</form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
 @endsection
 
 {{--
-This `body` section will be yielded right before the closing </body> tag.
-Use it to add specific things that *this* View needs at the end of the body,
-such as a page specific JavaScript files.
---}}
-@section('body')
-@endsection
+  This `body` section will be yielded right before the closing </body> tag.
+  Use it to add specific things that *this* View needs at the end of the body,
+  such as a page specific JavaScript files.
+  --}}
+  @section('body')
+  @endsection
