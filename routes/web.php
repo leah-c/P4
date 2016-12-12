@@ -12,13 +12,17 @@
 */
 /*
 Route::get('/', function () {
-    //return view('home');
-    return view('index');
+//return view('home');
+return view('index');
 
 });
 */
 # Direct user to the Expense Tracker landing page
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
+
+#Direct user to the registration page
+Route::get('/account_reg', 'AccountController@index')->name('account_reg.index');
+
 /*
 # Direct user to the Generator tools landing page
 Route::get('/', 'DEVBFF@home')->name('gen_home.index');
