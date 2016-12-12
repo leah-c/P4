@@ -43,7 +43,16 @@ Expense Tracker
                 </div>
 
                 <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
+<!--
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="remember" id="remember"> Remember login
+                  </label>
 
+                  <p class="help-block">(if this is a private computer)</p>
+
+                </div>
+-->
                 <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Login</button>
               </form>
             </div> <!--class="well"-->
@@ -59,9 +68,8 @@ Expense Tracker
               <li><span class="fa fa-check text-success"></span> Tag expenses</li>
               <li><span class="fa fa-check text-success"></span> Create a budget plan </li>
               <li><span class="fa fa-check text-success"></span> Create a budget plan </li>
-
             </ul>
-            <p><a href="#" class="btn btn-info btn-block">Sign Me Up!</a></p>
+            <p><a href="account_reg" class="btn btn-info btn-block">Sign Me Up!</a></p>
           </div>
         </div>
       </div> <!--class="modal-body"-->
