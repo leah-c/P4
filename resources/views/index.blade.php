@@ -29,10 +29,10 @@ Expense Tracker
           <div class="col-xs-6">
             <div class="well">
 
-              <form id="loginForm" method="POST" action = "/home">
+              <form id="loginForm" method="POST" action = "/validate_acct">
 
                 {{ csrf_field() }}
-                
+
                 <p class="lead">Existing Users Sign In</p>
 
                 <div class="form-group">
@@ -51,7 +51,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="password" placeholder="Password" value="" required="" title="Please enter your password">
+                      <input type="password" class="form-control" name="password" placeholder="Password" value="asdfasdfasdfa" required="" title="Please enter your password">
                       <span class="help-block"></span>
                     </div>
                   </div>
