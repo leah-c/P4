@@ -34,21 +34,11 @@ Expense Tracker
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                  <label for="firstname" class="cols-sm-2 control-label">First Name</label>
+                  <label for="firstname" class="cols-sm-2 control-label">Full Name</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="firstname" id="fname"  required="" placeholder="First Name" value = "firstName"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="lastname" class="cols-sm-2 control-label">Last Name</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="lastname" id="lname"  required="" placeholder="Last Name" value = "lastName"/>
+                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="Full Name" value = "myName"/>
                     </div>
                   </div>
                 </div>
