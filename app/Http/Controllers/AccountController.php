@@ -19,25 +19,58 @@ class AccountController extends Controller
 
   public function validateAccount(Request $request)
   {
-        //dd($request);
-    # Validation
-    $this->validate($request, [
-      'firstname' => 'required|min:1|max:255',
-      'lastname' => 'required|min:1|max:255',
-      'email' => 'required',
-      /*'password' => 'required|min:1|max:50',
-      'confirm_password' => 'required|min:1|max:50',
-*/
-    ]);
 
-    return view('home');
+    /**
+    * To Dos
+    *
+    *   1. determine if this is a log-in event or a account creation Environment
+    *   2. redirect user to
+    *       a. the account reg page if errors are encountered while creating a new account
+    *       b. the sign page if errors are encountered while signing in
+    *   3. display errors on the page if any
+    *   4. create flash message upon successful login or successful account creation
+    */
+
+
+    # Validation
+    if($request->input('submit') == 'login'){
+      $requestType = $request->input('submit');
+      $loginPW = $request->input('password');
+
+      echo 'request: '.$requestType.' '. 'password: '. $loginPW;
+
+      /*
+      $this->validate($request, [
+      'email' => 'required',
+      'password' => 'required|min:1|max:50',
+    ])
+    */
   }
 
-  /*    public function createUserAccount(Request $request)
-  {
-  # Validation
-  $this->validate($request, [
-  'numParagraphs' => 'required|numeric|min:1|max:50',
+  elseif ($request->input('submit') == 'register'){
+    $requestType = $request->input('submit');
+    $loginPW = $request->input('password');
+
+    echo 'request: '.$requestType.' '. 'password: '. $loginPW;
+    /*
+    $this->validate($request, [
+    'firstname' => 'required|min:1|max:255',
+    'lastname' => 'required|min:1|max:255',
+    'email' => 'required',
+    'password' => 'required|min:1|max:50',
+    'confirm_password' => 'required|min:1|max:50',
+  ])
+  */
+}
+return view('home');
+} /*end validateAccount()*/
+
+
+/*    public function createUserAccount(Request $request)
+{
+# Validation
+$this->validate($request, [
+'numParagraphs' => 'required|numeric|min:1|max:50',
 ]);
 */
 /*
