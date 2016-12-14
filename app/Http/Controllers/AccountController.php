@@ -11,8 +11,9 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function registerAccount()
     {
+        # directs user to the account registration page
         return view('account_reg');
     }
 
