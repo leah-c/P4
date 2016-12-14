@@ -19,3 +19,6 @@ Route::get('/account_reg', 'AccountController@registerAccount')->name('account_r
 
 # Direct user to the Expense Tracker landing page after account registration/ sign in
 Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
+
+# Directs form input from the account registration page to be validated
+Route::post('/validate_acct', 'AccountController@validateAccount')->name('validate_acct.create');
