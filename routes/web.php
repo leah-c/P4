@@ -22,3 +22,4 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 
 # Directs form input from the account registration page to be validated
 Route::post('/validate_acct', 'AccountController@validateAccount')->name('validate_acct.create');
+#Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');

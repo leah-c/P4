@@ -19,16 +19,18 @@ class AccountController extends Controller
 
   public function validateAccount(Request $request)
   {
+        //dd($request);
     # Validation
     $this->validate($request, [
       'firstname' => 'required|min:1|max:255',
       'lastname' => 'required|min:1|max:255',
       'email' => 'required',
-      'password' => 'required|min:6|max:50',
-      'confirm_password' => 'required|min:6|max:50',
+      /*'password' => 'required|min:1|max:50',
+      'confirm_password' => 'required|min:1|max:50',
+*/
     ]);
 
-    dd($request);
+    return view('home');
   }
 
   /*    public function createUserAccount(Request $request)
