@@ -17,6 +17,11 @@ class IndexController extends Controller
     return view('index');
   }
 
+  public function homepage()
+  {
+    #directs user to the Expense Tracker sign in/ registration page
+    return view('home');
+  }
   /**
   * Show the form for creating a new resource.
   *
