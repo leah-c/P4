@@ -10,32 +10,12 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-/*
-Route::get('/', function () {
-//return view('home');
-return view('index');
 
-});
-*/
-# Direct user to the Expense Tracker landing page
+# Direct user to the Expense Tracker sign in/registration page
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
 
-#Direct user to the registration page
-Route::get('/account_reg', 'AccountController@index')->name('account_reg.index');
+#Direct user to the registration form page
+Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
 
-/*
-# Direct user to the Generator tools landing page
-Route::get('/', 'DEVBFF@home')->name('gen_home.index');
-
-# Direct user to the ipsum text generator landing page
-Route::get('/generate_ipsum', 'DEVBFF@ipsumHome')->name('gen_ipsum.index');
-
-# Direct user to the user generator landing page
-Route::get('/generate_users', 'DEVBFF@userHome')->name('gen_user.index');
-
-# Directs user to the confirmation page of the ipsum generator
-Route::post('/generate_ipsum', 'DEVBFF@createIpsum')->name('gen_ipsum.create');
-
-# Directs user to the confirmation page of the random user generator
-Route::post('/generate_users', 'DEVBFF@createUsers')->name('gen_user.create');
-*/
+# Direct user to the Expense Tracker landing page after account registration/ sign in
+Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
