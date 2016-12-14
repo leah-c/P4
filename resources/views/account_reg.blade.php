@@ -15,27 +15,28 @@ Expense Tracker
 
   @endsection
 
-
   @section('content')
 
   <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel">Expense Tracker Account Registration</h2>
+        <h2 class="modal-title" id="myAccRegModalLabel">Expense Tracker Account Registration</h2>
       </div>
 
       <div class="modal-body">
         <div class="row">
           <div class="col-xs-12">
             <div class="well">
-              <form id="loginForm" method="POST">
+              <form id="loginForm" method="POST" action = "/home">
+
+                {{ csrf_field() }}
 
                 <div class="form-group">
                   <label for="name" class="cols-sm-2 control-label">First Name</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name"/>
+                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name" value = "firstName"/>
                     </div>
                   </div>
                 </div>
@@ -45,7 +46,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name"/>
+                      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name" value = "lastName"/>
                     </div>
                   </div>
                 </div>
@@ -55,7 +56,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email"/>
+                      <input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email" value = "myEmail"/>
                     </div>
                   </div>
                 </div>
@@ -65,7 +66,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters."/>
+                      <input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters." value = "PW"/>
                     </div>
                   </div>
                 </div>
@@ -75,103 +76,26 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password"/>
+                      <input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password" value = "X"/>
                     </div>
                   </div>
                 </div>
 
-                <div class="form-group ">
-                  <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                </div>
-                <div class="login-register">
-
-                </div>
-                <!--Commented below out to try out modal-->
-                <!--
-                <div class="container">
-                <div class="row main">
-                <div class="panel-heading">
-                <div class="panel-title text-center">
-                <h1 class="title">Expense Tracker</h1>
-                <hr />
-              </div>
+                <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Register</button>
+                
+              </form>
             </div>
-            <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
-
-            <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">First Name</label>
-            <div class="cols-sm-10">
-            <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-            <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name"/>
           </div>
         </div>
-      </div>
 
-      <div class="form-group">
-      <label for="name" class="cols-sm-2 control-label">Last Name</label>
-      <div class="cols-sm-10">
-      <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name"/>
-    </div>
-  </div>
-</div>
+        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
-<div class="form-group">
-<label for="email" class="cols-sm-2 control-label">Email</label>
-<div class="cols-sm-10">
-<div class="input-group">
-<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-<input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email"/>
-</div>
-</div>
-</div>
+        @endsection
 
-<div class="form-group">
-<label for="password" class="cols-sm-2 control-label">Password</label>
-<div class="cols-sm-10">
-<div class="input-group">
-<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-<input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters."/>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-<div class="cols-sm-10">
-<div class="input-group">
-<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-<input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password"/>
-</div>
-</div>
-</div>
-
-<div class="form-group ">
-<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-</div>
-<div class="login-register">
-
-</div>
--->
-
-
-
-</form>
-</div>
-</div>
-</div>
-
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-@endsection
-
-{{--
-  This `body` section will be yielded right before the closing </body> tag.
-  Use it to add specific things that *this* View needs at the end of the body,
-  such as a page specific JavaScript files.
-  --}}
-  @section('body')
-  @endsection
+        {{--
+          This `body` section will be yielded right before the closing </body> tag.
+          Use it to add specific things that *this* View needs at the end of the body,
+          such as a page specific JavaScript files.
+          --}}
+          @section('body')
+          @endsection
