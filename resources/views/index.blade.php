@@ -21,14 +21,18 @@ Expense Tracker
   <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Expense Tracker</h4>
+        <h2 class="modal-title" id="myIndexModalLabel">Expense Tracker</h2>
       </div>
 
       <div class="modal-body">
         <div class="row">
           <div class="col-xs-6">
             <div class="well">
-              <form id="loginForm" method="POST">
+
+              <form id="loginForm" method="POST" action = "/home">
+
+                {{ csrf_field() }}
+                
                 <p class="lead">Existing Users Sign In</p>
 
                 <div class="form-group">
@@ -36,7 +40,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="email" value="" required="" title="Please enter your email" placeholder="Email">
+                      <input type="text" class="form-control" name="email" required="" title="Please enter your email" placeholder="Email" value = "myEmail">
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -62,14 +66,14 @@ Expense Tracker
           </div>
 
           <div class="col-xs-6">
-            <p class="lead">Don't have an account?</p>
-            <p>Sign up now to:</p>
+            <p class="lead">Don't have an account? </p>
+            <p>Sign up to:</p>
             <ul class="list-unstyled" style="line-height: 2">
-              <li><span class="fa fa-check text-success"></span> See all your expenses</li>
-              <li><span class="fa fa-check text-success"></span> Track expenses</li>
-              <li><span class="fa fa-check text-success"></span> Tag expenses</li>
-              <li><span class="fa fa-check text-success"></span> Create a budget plan </li>
-              <li><span class="fa fa-check text-success"></span> Create a budget plan </li>
+              <li><span class="fa fa-check text-success"></span> Create a budget plan</li>
+              <li><span class="fa fa-check text-success"></span> Receive alerts</li>
+              <li><span class="fa fa-check text-success"></span> Track your expenses</li>
+              <li><span class="fa fa-check text-success"></span> Categorize and organize expenses</li>
+              <li><span class="fa fa-check text-success"></span> View snapshot of spending habits</li>
             </ul>
             <p><a href="account_reg" class="btn btn-info btn-block">Sign Me Up!</a></p>
           </div>
