@@ -27,26 +27,28 @@ Expense Tracker
         <div class="row">
           <div class="col-xs-12">
             <div class="well">
-              <form id="loginForm" method="POST" action = "/home">
+
+              <!-- send form input to be validated -->
+              <form id="loginForm" method="POST" action = "/validate_acct">
 
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                  <label for="name" class="cols-sm-2 control-label">First Name</label>
+                  <label for="firstname" class="cols-sm-2 control-label">First Name</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="First Name" value = "firstName"/>
+                      <input type="text" class="form-control" name="firstname" id="fname"  required="" placeholder="First Name" value = "firstName"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="name" class="cols-sm-2 control-label">Last Name</label>
+                  <label for="lastname" class="cols-sm-2 control-label">Last Name</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="lname"  required="" placeholder="Last Name" value = "lastName"/>
+                      <input type="text" class="form-control" name="lastname" id="lname"  required="" placeholder="Last Name" value = "lastName"/>
                     </div>
                   </div>
                 </div>
@@ -72,17 +74,17 @@ Expense Tracker
                 </div>
 
                 <div class="form-group">
-                  <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                  <label for="confirm_password" class="cols-sm-2 control-label">Confirm Password</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="confirm" id="confirm" required="" placeholder="Confirm your Password" value = "X"/>
+                      <input type="password" class="form-control" name="confirm_password" id="confirm" required="" placeholder="Confirm your Password" value = "X"/>
                     </div>
                   </div>
                 </div>
 
-                <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Register</button>
-                
+                <button type="submit" value="register" name="submit" class="btn btn-success btn-block">Register</button>
+
               </form>
             </div>
           </div>
