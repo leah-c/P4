@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon;
+Use App\Expense;
 
 class ExampleExpenseController extends Controller
 {
@@ -56,5 +57,24 @@ class ExampleExpenseController extends Controller
     echo $user->name;
   }
 
+  public function example5() {
+
+    # Instantiate a new Book Model object
+    $expense = new Expense();
+
+    # Set the parameters
+    # Note how each parameter corresponds to a field in the table
+    $expense->expense_date= '2015-03-03';
+    $expense->amount= '39.99';
+    $expense->comments= 'small expense';
+    $expense->user_id= '3';
+
+    # Invoke the Eloquent save() method
+    # This will generate a new row in the `books` table, with the above data
+    $expense->save();
+
+    echo 'Added the following expense: <br> Expense Date: '.$expense->expense_date.'<br>Amount: '. $expense->amount;
+
+  }
 
 }
