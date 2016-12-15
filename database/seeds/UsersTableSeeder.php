@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
 
       'name' => 'Jill',
       'email' => 'jill@harvard.edu',
-      'password' => helloworld,
+      'password' => 'helloworld',
     ]);
 
     DB::table('users')->insert([
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
 
       'name' => 'Jamal',
       'email' => 'jamal@harvard.edu',
-      'password' => helloworld,
+      'password' => 'helloworld',
     ]);
 
     DB::table('users')->insert([
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
 
       'name' => 'Leah Chan',
       'email' => 'chan.leah@me.com',
-      'password' => helloworld,
+      'password' => 'helloworld',
     ]);
   }
 }
