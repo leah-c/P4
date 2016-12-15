@@ -24,6 +24,14 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 Route::post('/validate_acct', 'AccountController@validateAccount')->name('validate_acct.create');
 #Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');
 
+Route::get('/example1', 'ExampleExpenseController@example1')->name('example1.show');
+
+Route::get('/example2', 'ExampleExpenseController@example2')->name('example2.show');
+
+Route::get('/example3', 'ExampleExpenseController@example3')->name('example3.show');
+
+Route::get('/example4', 'ExampleExpenseController@example4')->name('example4.show');
+
 /*
 if(App::environment('local')) {
 
