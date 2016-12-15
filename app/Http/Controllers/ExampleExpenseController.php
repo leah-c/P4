@@ -77,4 +77,20 @@ class ExampleExpenseController extends Controller
 
   }
 
+  public function example6() {
+
+    $expenses = Expense::all();
+
+    if(!$expenses->isEmpty()) {
+
+      # Output the books
+      foreach($expenses as $expense) {
+        echo 'Expense Date: '.$expense->expense_date.' ';
+        echo 'Amount: '.$expense->amount.'<br>';
+      }
+    }
+    else {
+      echo 'No expenses found';
+    }
+  }
 }
