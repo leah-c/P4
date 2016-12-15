@@ -25,6 +25,20 @@ Route::post('/validate_acct', 'AccountController@validateAccount')->name('valida
 #Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');
 
 /*
+if(App::environment('local')) {
+
+    Route::get('/drop', function() {
+
+        DB::statement('DROP database expenses');
+        DB::statement('CREATE database expenses');
+
+        return 'Dropped expenses; created expenses.';
+    });
+
+};
+*/
+
+/*
 #test db conection
 Route::get('/debug', function() {
 
