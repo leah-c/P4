@@ -30,6 +30,7 @@ class CreateExpensesTable extends Migration
       $table->DateTime('expense_date');
       $table->text('comments')->nullable();
       $table->integer('active')->default(1);
+      $table->integer('category_id')->nullable();
       $table->integer('user_id');
     });
   }
