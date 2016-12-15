@@ -32,9 +32,9 @@ class UsersTableSeeder extends Seeder
     DB::table('expenses')->insert([
       'created_at' => Carbon\Carbon::now()->toDateTimeString(),
       'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-      
+
       'name' => 'Leah Chan',
-      'email' => 'chan.leah@gmail.com',
+      'email' => 'chan.leah@me.com',
       'password' => helloworld,
     ]);
   }
