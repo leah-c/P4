@@ -34,6 +34,8 @@ Route::get('/example4', 'ExampleExpenseController@example4')->name('example4.sho
 
 Route::get('/example5', 'ExampleExpenseController@example5')->name('example5.show');
 
+Route::get('/example6', 'ExampleExpenseController@example6')->name('example6.show');
+
 /*
 if(App::environment('local')) {
 
