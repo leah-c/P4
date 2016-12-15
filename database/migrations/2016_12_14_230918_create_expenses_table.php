@@ -25,9 +25,10 @@ class CreateExpensesTable extends Migration
       #$table->timestamp('created_at')->useCurrent = true;
 
       # The rest of the fields...
-      $table->string('expense_name');
+      #$table->string('expense_name');
+      $table->date('expense_date');
       $table->decimal('amount');
-      $table->DateTime('expense_date');
+
       $table->text('comments')->nullable();
       $table->integer('active')->default(1);
       $table->integer('category_id')->nullable();
