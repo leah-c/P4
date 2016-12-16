@@ -18,6 +18,11 @@ Expense Tracker
 
   @section('content')
 
+    <!-- will be used to show any messages -->
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
+
     <p>Welcome to the expense tracker tool menu!</p>
 
     <h2>Let's Get Started!</h2>
