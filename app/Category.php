@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-  public function categories() {
+  public function expenses() {
     # Category has many Expenses
     # Define a one-to-many relationship.
     return $this->hasMany('App\Expense');
