@@ -24,14 +24,10 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
 
 # Directs form input from the account registration page to be validated
-Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
+#Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
 
 # Show all expenses
-# for testing only
 Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
-
-# direct user to page that shows all expenses
-Route::post('/expenses', 'ExpenseController@index')->name('expenses.index');
 
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
@@ -54,6 +50,7 @@ Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expenses.
 
 # Delete route to actually destroy the book
 Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
+
 
 
 /*
