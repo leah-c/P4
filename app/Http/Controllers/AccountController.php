@@ -103,7 +103,40 @@ public function create()
 */
 public function store(Request $request)
 {
-  //
+  #dump($request);
+  # Validate
+  $this->validate($request, [
+    'name' => 'required ',
+    'email' => 'required | email',
+    'password' => 'required | alphanumeric',
+    'confirm_password' => 'required | alphanumeric',
+  ]);
+
+  // store
+  $expense = new Expense;
+  $expense->expense_date = Input::get('expense_date');
+  $expense->amount= Input::get('amount');
+  $expense->user_id = '1';
+
+  # check to see if a category was selected
+  if (isset( $_POST['description']) && $_POST['description'] != '') {
+    $expense->description = Input::get('description');
+  };
+
+  # check to see if an expense desc was created
+  if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
+    $expense->category_id = Input::get('category_id');
+  };
+
+  $expense->save();
+
+  #$expenses = Expense::orderBy('expense_date','descending')->get();
+
+  // redirect
+  Session::flash('message', 'Successfully created a new expense!');
+  #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
+  #return Redirect::to('/home'); //LeahC 12/16
+  return Redirect::to('/expenses'); //LeahC 12/16
 }
 
 /**
