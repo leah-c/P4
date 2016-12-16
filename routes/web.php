@@ -15,6 +15,9 @@
 # working
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
 
+# Direct user to the Expense Tracker landing page after adding and expense
+Route::get('/home', 'IndexController@homepage')->name('expense_tracker.home');
+
 # Direct user to the Expense Tracker landing page after account registration/ sign in
 # will show expense table if user has any associated with their id
 Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
