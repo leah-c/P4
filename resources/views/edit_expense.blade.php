@@ -38,7 +38,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar fa" aria-hidden="true"></i></span>
-                      <input type="date" class="form-control" name="name" id="fname"  required="" placeholder="yyyy-mm-dd" value = "2015-03-03"/>
+                      <input type="date" class="form-control" name="name" id="fname"  required=""  value = "{{old('expense', $expense->expense_date)}}"/>
                     </div>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-usd fa-lg" aria-hidden="true"></i></span>
-                      <input type="decimal" class="form-control" name="expenseAmount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "10.00"/>
+                      <input type="decimal" class="form-control" name="expenseAmount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "{{old('expense', $expense->amount)}}""/>
                     </div>
                   </div>
                 </div>
@@ -58,7 +58,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseCategory" id="expenseCategory"  placeholder="Expense category" value = ""/>
+                      <input type="text" class="form-control" name="expenseCategory" id="expenseCategory"  placeholder="Expense category" value = ""{{old('expense', $expense->category_id)}}"/>
                     </div>
                   </div>
                 </div>
@@ -68,12 +68,12 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-file-text fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseDesc" id="expenseDesc" placeholder="Description of the expense" value = ""/>
+                      <input type="text" class="form-control" name="expenseDesc" id="expenseDesc" placeholder="Description of the expense" value = "{{old('expense', $expense->description)}}"/>
                     </div>
                   </div>
                 </div>
 
-                <button type="submit" value="addNewExpense" name="submit" class="btn btn-success btn-block">Add Expense</button>
+                <button type="submit" value="addNewExpense" name="submit" class="btn btn-success btn-block">Save Expense</button>
               </form>
 
             </div>
