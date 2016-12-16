@@ -23,9 +23,9 @@ Expense Tracker
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <p>Welcome to the expense tracker tool menu!</p>
+    <h2>Expense Tracker</2>
 
-    <h2>Let's Get Started!</h2>
+    {{--<h2>Let's Get Started!</h2>--}}
 
     <p> Select from one of the following options. </p>
     <ul>
@@ -35,8 +35,6 @@ Expense Tracker
       <li class="expenseOp"><a href="#" class="btn btn-sm btn-primary btn-block" id="view_expense"><span class="glyphicon glyphicon-th-list"></span> View Expenses</a></li>
     -->
   </ul>
-
-
 
   @endsection
 
