@@ -44,6 +44,7 @@ Expense Tracker
                   </div>
                 </div>
 
+
                 <div class="form-group">
                   <label for="expenseAmount" class="cols-sm-2 control-label">Amount</label>
                   <div class="cols-sm-10">
@@ -55,6 +56,7 @@ Expense Tracker
                   </div>
                 </div>
 
+
                 <div class="form-group">
                   <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
                   <div class="cols-sm-10">
@@ -62,8 +64,10 @@ Expense Tracker
                       <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
                       <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = ""/>
                     </div>
+                    <div class='error'>{{ $errors->first('category_id') }}</div>
                   </div>
                 </div>
+
 
                 <div class="form-group">
                   <label for="expenseDesc" class="cols-sm-2 control-label">Description</label>
@@ -72,6 +76,7 @@ Expense Tracker
                       <span class="input-group-addon"><i class="fa fa-file-text fa" aria-hidden="true"></i></span>
                       <input type="text" class="form-control" name="description" id="expenseDesc" placeholder="Description of the expense" value = ""/>
                     </div>
+                    <div class='error'>{{ $errors->first('description') }}</div>
                   </div>
                 </div>
 
@@ -84,22 +89,22 @@ Expense Tracker
         </div>
 
         <!-- LeahC added 12/16/16 -->
-{{--        @if(count($errors)>0)
+        {{--        @if(count($errors)>0)
           <ul>
             @foreach($errors->all() as $error)
-              <li>{{$error}}</li>
+            <li>{{$error}}</li>
             @endforeach
           </ul>
-        @endif
---}}
-        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-        @endsection
-
-        {{--
-          This `body` section will be yielded right before the closing </body> tag.
-          Use it to add specific things that *this* View needs at the end of the body,
-          such as a page specific JavaScript files.
+          @endif
           --}}
-          @section('body')
+          <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
           @endsection
+
+          {{--
+            This `body` section will be yielded right before the closing </body> tag.
+            Use it to add specific things that *this* View needs at the end of the body,
+            such as a page specific JavaScript files.
+            --}}
+            @section('body')
+            @endsection

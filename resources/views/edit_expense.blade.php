@@ -29,7 +29,9 @@ Expense Tracker
             <div class="well">
 
               <!-- send form input to be validated -->
-              <form id="add_expense_form" method="POST" action = "">
+              <form id="add_expense_form" method="POST" action = "/expenses/{{ $expense->id }}">
+
+                {{ method_field('PUT') }}
 
                 {{ csrf_field() }}
 
@@ -38,38 +40,45 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar fa" aria-hidden="true"></i></span>
-                      <input type="date" class="form-control" name="name" id="fname"  required=""  value = "{{old('expense', $expense->expense_date)}}"/>
+                      <input type="date" class="form-control" name="expense_date" id="dateOfExpense"  required=""  value = "{{old('expense', $expense->expense_date)}}"/>
                     </div>
+                    <div class='error'>{{ $errors->first('expense_date') }}</div>
                   </div>
                 </div>
+
 
                 <div class="form-group">
                   <label for="expenseAmount" class="cols-sm-2 control-label">Amount</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-usd fa-lg" aria-hidden="true"></i></span>
-                      <input type="decimal" class="form-control" name="expenseAmount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "{{old('expense', $expense->amount)}}""/>
+                      <input type="numeric" class="form-control" name="amount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "{{old('expense', $expense->amount)}}"/>
                     </div>
+                    <div class='error'>{{ $errors->first('amount') }}</div>
                   </div>
                 </div>
+
 
                 <div class="form-group">
                   <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseCategory" id="expenseCategory"  placeholder="Expense category" value = ""{{old('expense', $expense->category_id)}}"/>
+                      <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = ""{{old('expense', $expense->category_id)}}"/>
                     </div>
+                    <div class='error'>{{ $errors->first('category_id') }}</div>
                   </div>
                 </div>
+
 
                 <div class="form-group">
                   <label for="expenseDesc" class="cols-sm-2 control-label">Description</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-file-text fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseDesc" id="expenseDesc" placeholder="Description of the expense" value = "{{old('expense', $expense->description)}}"/>
+                      <input type="text" class="form-control" name="description" id="expenseDesc" placeholder="Description of the expense" value = "{{old('expense', $expense->description)}}"/>
                     </div>
+                    <div class='error'>{{ $errors->first('description') }}</div>
                   </div>
                 </div>
 
