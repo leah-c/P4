@@ -60,7 +60,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseCategory" id="expenseCategory"  placeholder="Expense category" value = ""/>
+                      <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = ""/>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-file-text fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="expenseDesc" id="expenseDesc" placeholder="Description of the expense" value = ""/>
+                      <input type="text" class="form-control" name="description" id="expenseDesc" placeholder="Description of the expense" value = ""/>
                     </div>
                   </div>
                 </div>
