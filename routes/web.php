@@ -22,8 +22,10 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 
 # Directs form input from the account registration page to be validated
 Route::post('/validate_acct', 'AccountController@validateAccount')->name('validate_acct.create');
-#Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');
 
+
+#Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');
+/*
 Route::get('/example1', 'ExampleExpenseController@example1')->name('example1.show');
 
 Route::get('/example2', 'ExampleExpenseController@example2')->name('example2.show');
@@ -36,6 +38,10 @@ Route::get('/example5', 'ExampleExpenseController@example5')->name('example5.sho
 
 Route::get('/example6', 'ExampleExpenseController@example6')->name('example6.show');
 
+Route::get('/example7', 'ExampleExpenseController@example7')->name('example7.show');
+Route::get('/example8', 'ExampleExpenseController@example8')->name('example8.show');
+Route::get('/example9', 'ExampleExpenseController@example9')->name('example9.show');
+*/
 /*
 if(App::environment('local')) {
 
