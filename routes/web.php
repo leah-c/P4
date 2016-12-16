@@ -23,6 +23,9 @@ Route::get('/account_reg', 'AccountController@registerAccount')->name('account_r
 # Directs form input from the account registration page to be validated
 Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
 
+# Show all expenses
+Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
+
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
 #Route::get('/expense/create', 'ExpenseController@create')->name('expenses.create')->middleware('auth');
