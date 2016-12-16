@@ -8,6 +8,7 @@ use App\Expense;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ExpenseController extends Controller
 {
@@ -48,35 +49,38 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
-    $rules = array(
-      'expense_date' => 'required',
-      'amount'=> 'required|decimal',
-    );
+    dump($request);
+    # Validate
+    $this->validate($request, [
+        'expense_date' => 'required | date',
+        'amount' => 'required | numeric',
+    ]);
 
-    $validator = \Validator::make(Input::all(), $rules);
+    // store
+    $expense = new Expense;
+    $expense->expense_date = Input::get('expense_date');
+    $expense->amount= Input::get('amount');
+    $expense->user_id = '1';
 
-    // process the login
-    if ($validator->fails()) {
-      return Redirect::to('expenses/create')
-      ->withErrors($validator)
-      ->withInput(Input::except('password'));
-    } else {
+    # check to see if a category was selected
+    if (isset( $_POST['description']) && $_POST['description'] != '') {
+      $expense->description = Input::get('description');
+    };
 
-      // store
-      $expense = new Expense;
-      $expense->expense_date = Input::get('expense_date');
-      $expense->amount= Input::get('amount');
-      $expense->user_id = '1';
-      $expense->save();
+    # check to see if an expense desc was created
+    if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
+        $expense->category_id = Input::get('category_id');
+    };
 
-      $expenses = Expense::orderBy('expense_date','descending')->get();
+    $expense->save();
 
-      // redirect
-      Session::flash('message', 'Successfully created a new expense!');
-      #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
-      return Redirect::to('/home'); //LeahC 12/16
+    $expenses = Expense::orderBy('expense_date','descending')->get();
 
-    }
+    // redirect
+    Session::flash('message', 'Successfully created a new expense!');
+    #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
+    return Redirect::to('/home'); //LeahC 12/16
+
   }
 
 
