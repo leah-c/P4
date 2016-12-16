@@ -30,8 +30,11 @@ Route::get('/register_new_account', 'AccountController@registerAccount')->name('
 # Show all expenses
 Route::get('/expenses', 'ExpenseController@index')->name('expense.index');
 
-# Shaow all expenses after log in
+# Show all expenses after log in
 Route::post('/expenses/home', 'ExpenseController@index')->name('expense.index');
+
+# Show all expenses when user clicks cancel upin editin or adding an expense
+Route::get('/expenses/home', 'ExpenseController@index')->name('expense.index');
 
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expense.create');
