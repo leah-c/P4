@@ -26,9 +26,6 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 # working
 Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
 
-# Directs form input from the account registration page to be validated
-#Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
-
 # Show all expenses
 Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
 
