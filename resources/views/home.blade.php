@@ -22,7 +22,7 @@ Expense Tracker
 
     <h2>Let's Get Started!</h2>
 
-    <a href="#" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a>
+    <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a>
     <!--<p> Select from one of the following options. </p>
     <ul>
     <li class="expenseOp"><a href="#" class="btn btn-sm btn-primary btn-block" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a></li>
