@@ -15,9 +15,11 @@ class ConnectCategoriesAndExpenses extends Migration
   {
     Schema::table('expenses', function (Blueprint $table) {
 
+      # Add a new INT field called `author_id` that has to be unsigned (i.e. positive)
+      $table->integer('category_id')->unsigned();
+
       # This field `author_id` is a foreign key that connects to the `id` field in the `authors` table
       $table->foreign('category_id')->references('id')->on('categories');
-      
   }
 
   /**
@@ -27,6 +29,13 @@ class ConnectCategoriesAndExpenses extends Migration
   */
   public function down()
   {
-    Schema::drop('expenses');
+    Schema::table('expenses', function (Blueprint $table) {
+
+        # ref: http://laravel.com/docs/migrations#dropping-indexes
+        # combine tablename + fk field name + the word "foreign"
+        $table->dropForeign('expenses_category_id_foreign');
+
+        $table->dropColumn('category_id');
+    });
   }
 }
