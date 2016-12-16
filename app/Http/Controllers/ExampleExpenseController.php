@@ -93,4 +93,55 @@ class ExampleExpenseController extends Controller
       echo 'No expenses found';
     }
   }
+
+  #Delete function
+  public function example7() {
+
+    # First get a book to delete
+    $expense = Expense::where('amount', '>=', '50')->first();
+
+    # If we found the book, delete it
+    if($expense) {
+
+      # Goodbye!
+      $expense->delete();
+
+      return "Deletion complete; check the database to see if it worked...";
+
+    }
+    else {
+      return "Can't delete - all expenses are less than $50.";
+    }
+  }
+
+#update
+  public function example8() {
+
+    # First get a book to delete
+    # First get a book to update
+    $expense = Expense::where('amount', '<=', '300')->first();
+
+    # If we found the book, update it
+    if($expense) {
+
+        # Give it a different title
+        $expense->amount = '2.00';
+
+        # Save the changes
+        $expense->save();
+
+        echo "Update complete; check the database to see if your update worked...";
+    }
+    else {
+        echo "Expenses are all > $20.";
+    }
+  }
+
+  function example9() {
+    $expenses = Expense::all();
+    return view('home')->with('expenses', $expenses);
+}
+
+
+
 }
