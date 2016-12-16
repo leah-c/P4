@@ -88,6 +88,13 @@ class ExpenseController extends Controller
   */
   public function show($id)
   {
+    $expense = Expense::find($id);
+
+    if(is_null($expense)) {
+        Session::flash('message','Expense not found');
+        return redirect('/expenses/home');
+    }
+
     return view('expenses.show')->with('expense', $id);
   }
 
