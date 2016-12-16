@@ -129,7 +129,6 @@ class ExpenseController extends Controller
     $expense->amount = $request->amount;
     $expense->category_id= $request->category_id;
 
-
     # check to see if an expense desc was created
     if (isset( $_POST['description']) && $_POST['description'] != '') {
       $expense->description = $request->description;
