@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Expense;
-use Validator, Input, Redirect;
-#use Illuminate\Support\Facades\Validator;
-#use Illuminate\Support\Facades\Input;
-#use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class ExpenseController extends Controller
 {
@@ -19,12 +18,13 @@ class ExpenseController extends Controller
   */
   public function index()
   {
-    #  $expenses = Expense::all();
+    $expenses = Expense::all();
     #dump($expenses);
     #with(what you want to call it in the view, var name)
     #return view('home')->with('expenses', $expenses);
     #as an Array
-    return view('home')->with(['expenses'=> $expenses]);
+    #return view('home')->with(['expenses'=> $expenses]);
+    return view('view_expenses')->with(['expenses'=> $expenses]); //LeahC 12/16
 
 
   }
@@ -69,9 +69,13 @@ class ExpenseController extends Controller
       $expense->user_id = '1';
       $expense->save();
 
+      $expenses = Expense::orderBy('expense_date','descending')->get();
+
       // redirect
       Session::flash('message', 'Successfully created a new expense!');
-      return Redirect::to('/home');
+      #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
+      return Redirect::to('/home'); //LeahC 12/16
+
     }
   }
 
