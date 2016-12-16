@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Expense;
+use Validator, Input, Redirect;
+#use Illuminate\Support\Facades\Validator;
+#use Illuminate\Support\Facades\Input;
+#use Illuminate\Support\Facades\Redirect;
 
 class ExpenseController extends Controller
 {
@@ -15,7 +19,7 @@ class ExpenseController extends Controller
   */
   public function index()
   {
-  #  $expenses = Expense::all();
+    #  $expenses = Expense::all();
     #dump($expenses);
     #with(what you want to call it in the view, var name)
     #return view('home')->with('expenses', $expenses);
@@ -44,8 +48,33 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
-    //
+    $rules = array(
+      'expense_date' => 'required',
+      'amount'=> 'required|decimal',
+    );
+
+    $validator = \Validator::make(Input::all(), $rules);
+
+    // process the login
+    if ($validator->fails()) {
+      return Redirect::to('expenses/create')
+      ->withErrors($validator)
+      ->withInput(Input::except('password'));
+    } else {
+
+      // store
+      $expense = new Expense;
+      $expense->expense_date = Input::get('expense_date');
+      $expense->amount= Input::get('amount');
+      $expense->user_id = '1';
+      $expense->save();
+
+      // redirect
+      Session::flash('message', 'Successfully created a new expense!');
+      return Redirect::to('/home');
+    }
   }
+
 
   /**
   * Display the specified resource.
