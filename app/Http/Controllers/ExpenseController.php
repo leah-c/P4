@@ -48,6 +48,7 @@ class ExpenseController extends Controller
     $this->validate($request, [
         'expense_date' => 'required | date',
         'amount' => 'required | numeric',
+        'description' => 'max:50',
     ]);
 
     // store
