@@ -24,8 +24,8 @@ class IndexController extends Controller
     #directs user to the Expense Tracker sign in/ registration page
     #return view('home');
 
-    $expenses = Expense::all();
-    dump($expenses);
+    $expenses = Expense::orderBy('expense_date','descending')->get();
+    #dump($expenses);
     #                    with(what you want to call it in the view, var name)
     #return view('home')->with('expenses', $expenses);
     #as an Array
