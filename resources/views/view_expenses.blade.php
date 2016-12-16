@@ -18,9 +18,12 @@ Expense Tracker
 
   @section('content')
 
-    <p>Welcome to the expense tracker tool menu!</p>
+    <h2>Expense Tracker</h2>
 
-    <h2>Let's Get Started!</h2>
+    <!-- will be used to show any messages -->
+    @if (Session::has('message'))
+        <div class="alert alert-success">{{ Session::get('message') }}</div>
+    @endif
 
     <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a>
     <!--<p> Select from one of the following options. </p>
