@@ -14,17 +14,38 @@
 # Direct user to the Expense Tracker sign in/registration page
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
 
-#Direct user to the registration form page
-Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
-
 # Direct user to the Expense Tracker landing page after account registration/ sign in
 Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 
+#Direct user to the registration form page
+Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
+
 # Directs form input from the account registration page to be validated
-Route::post('/validate_acct', 'AccountController@validateAccount')->name('validate_acct.create');
+Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
+
+# Show a form to add an expense
+Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
+#Route::get('/expense/create', 'ExpenseController@create')->name('expenses.create')->middleware('auth');
+
+# Process the form to add a new expense
+Route::post('/expenses', 'ExpenseController@store')->name('expenses.store');
+
+# Show an individual expense
+Route::get('/expenses/{id}', 'ExpenseController@show')->name('expenses.show');
+
+# Show form to edit an expense
+Route::get('/expenses/{id}/edit', 'ExpenseController@edit')->name('expenses.edit');
+
+# Process form to edit an expense
+Route::put('/expenses/{id}', 'ExpenseController@update')->name('expenses.update');
+
+# Get route to confirm deletion of an expense
+Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expenses.destroy');
+
+# Delete route to actually destroy the book
+Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
 
 
-#Route::post('/home', 'AccountController@validateAccount')->name('validate_acct.create');
 /*
 Route::get('/example1', 'ExampleExpenseController@example1')->name('example1.show');
 
