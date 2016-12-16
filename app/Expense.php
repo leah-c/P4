@@ -11,10 +11,10 @@ class Expense extends Model
   /**
   *
   */
-  public function expense() {
+  public function category() {
     # Book belongs to Author
     # Define an inverse one-to-many relationship.
-    return $this->belongsTo('App\User');
+    return $this->belongsTo('App\Category');
   }
 
 
