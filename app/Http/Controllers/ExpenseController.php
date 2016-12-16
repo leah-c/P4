@@ -56,12 +56,12 @@ class ExpenseController extends Controller
     $expense->amount= Input::get('amount');
     $expense->user_id = '1';
 
-    # check to see if a category was selected
+    # check to see if an expense desc was created
     if (isset( $_POST['description']) && $_POST['description'] != '') {
       $expense->description = Input::get('description');
     };
 
-    # check to see if an expense desc was created
+    # check to see if a category was selected
     if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
         $expense->category_id = Input::get('category_id');
     };
