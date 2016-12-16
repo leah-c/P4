@@ -86,7 +86,7 @@ class ExpenseController extends Controller
   */
   public function show($id)
   {
-    //
+    return view('expenses.show')->with('expense', $id);
   }
 
   /**
@@ -97,7 +97,11 @@ class ExpenseController extends Controller
   */
   public function edit($id)
   {
-    //
+    #TO DO
+    # Validate that it is a good $id being passed in
+    $expense = Expense::find($id);
+    #dump($expense);
+    return view('edit_expense')->with(['expense'=>$expense]);
   }
 
   /**
