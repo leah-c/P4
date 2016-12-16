@@ -22,8 +22,6 @@ class ExpenseController extends Controller
     $expenses = Expense::all();
 
     return view('view_expenses')->with(['expenses'=> $expenses]); //LeahC 12/16
-
-
   }
 
   /**
