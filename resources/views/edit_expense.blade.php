@@ -35,6 +35,8 @@ Expense Tracker
 
                 {{ csrf_field() }}
 
+                <input name='expense_id' value = "{{ $expense->id }}" type = "hidden">
+
                 <div class="form-group">
                   <label for="dateOfExpense" class="cols-sm-2 control-label">Expense Date</label>
                   <div class="cols-sm-10">
@@ -83,7 +85,7 @@ Expense Tracker
                 </div>
 
                 <div class="form-actions">
-                  <button type="submit" value="addNewExpense" name="submit" class="btn btn-success btn-block">Save Expense</button>
+                  <button type="submit" value="save" name="save_expense_changes" class="btn btn-success btn-block">Save Changes</button>
                   <button type="button" class="btn btn-danger btn-block" value="Cancel" name="cancel" onclick="location.href = '/expenses/home';">Cancel</button>
                 </div>
               </form>
