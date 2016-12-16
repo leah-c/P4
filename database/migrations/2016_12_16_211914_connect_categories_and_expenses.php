@@ -20,6 +20,7 @@ class ConnectCategoriesAndExpenses extends Migration
 
       # This field `author_id` is a foreign key that connects to the `id` field in the `authors` table
       $table->foreign('category_id')->references('id')->on('categories');
+    });
   }
 
   /**
@@ -31,11 +32,11 @@ class ConnectCategoriesAndExpenses extends Migration
   {
     Schema::table('expenses', function (Blueprint $table) {
 
-        # ref: http://laravel.com/docs/migrations#dropping-indexes
-        # combine tablename + fk field name + the word "foreign"
-        $table->dropForeign('expenses_category_id_foreign');
+      # ref: http://laravel.com/docs/migrations#dropping-indexes
+      # combine tablename + fk field name + the word "foreign"
+      $table->dropForeign('expenses_category_id_foreign');
 
-        $table->dropColumn('category_id');
+      $table->dropColumn('category_id');
     });
   }
 }
