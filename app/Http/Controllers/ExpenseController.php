@@ -20,11 +20,7 @@ class ExpenseController extends Controller
   public function index()
   {
     $expenses = Expense::all();
-    #dump($expenses);
-    #with(what you want to call it in the view, var name)
-    #return view('home')->with('expenses', $expenses);
-    #as an Array
-    #return view('home')->with(['expenses'=> $expenses]);
+
     return view('view_expenses')->with(['expenses'=> $expenses]); //LeahC 12/16
 
 
