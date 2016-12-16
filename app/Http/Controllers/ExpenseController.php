@@ -19,8 +19,8 @@ class ExpenseController extends Controller
   */
   public function index()
   {
-    $expenses = Expense::all();
-
+    #$expenses = Expense::all();
+    $expenses = Expense::orderBy('expense_date', 'descending')->get(); #query
     return view('view_expenses')->with(['expenses'=> $expenses]); //LeahC 12/16
   }
 
@@ -43,7 +43,7 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
-    dump($request);
+    #dump($request);
     # Validate
     $this->validate($request, [
         'expense_date' => 'required | date',
@@ -68,13 +68,13 @@ class ExpenseController extends Controller
 
     $expense->save();
 
-    $expenses = Expense::orderBy('expense_date','descending')->get();
+    #$expenses = Expense::orderBy('expense_date','descending')->get();
 
     // redirect
     Session::flash('message', 'Successfully created a new expense!');
     #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
-    return Redirect::to('/home'); //LeahC 12/16
-
+    #return Redirect::to('/home'); //LeahC 12/16
+    return Redirect::to('/expenses'); //LeahC 12/16
   }
 
 
