@@ -12,19 +12,26 @@
 */
 
 # Direct user to the Expense Tracker sign in/registration page
+# working
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
 
 # Direct user to the Expense Tracker landing page after account registration/ sign in
+# will show expense table if user has any associated with their id
 Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 
 #Direct user to the registration form page
+# working
 Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
 
 # Directs form input from the account registration page to be validated
 Route::post('/validate_acct', 'AccountController@validateAccount')->name('account.create');
 
 # Show all expenses
+# for testing only
 Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
+
+# direct user to page that shows all expenses
+Route::post('/expenses', 'ExpenseController@index')->name('expenses.index');
 
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
