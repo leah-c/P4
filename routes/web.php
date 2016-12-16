@@ -28,32 +28,32 @@ Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 Route::get('/register_new_account', 'AccountController@registerAccount')->name('new_account.store');
 
 # Show all expenses
-Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
+Route::get('/expenses', 'ExpenseController@index')->name('expense.index');
 
 # Shaow all expenses after log in
-Route::post('/expenses/home', 'ExpenseController@index')->name('expenses.index');
+Route::post('/expenses/home', 'ExpenseController@index')->name('expense.index');
 
 # Show a form to add an expense
-Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
+Route::get('/expenses/create', 'ExpenseController@create')->name('expense.create');
 #Route::get('/expense/create', 'ExpenseController@create')->name('expenses.create')->middleware('auth');
 
 # Process the form to add a new expense
-Route::post('/expenses', 'ExpenseController@store')->name('expenses.store');
+Route::post('/expenses', 'ExpenseController@store')->name('expense.store');
 
 # Show an individual expense
-Route::get('/expenses/{id}', 'ExpenseController@show')->name('expenses.show');
+Route::get('/expenses/{id}', 'ExpenseController@show')->name('expense.show');
 
 # Show form to edit an expense
-Route::get('/expenses/{id}/edit', 'ExpenseController@edit')->name('expenses.edit');
+Route::get('/expenses/{id}/edit', 'ExpenseController@edit')->name('expense.edit');
 
 # Process form to edit an expense
-Route::put('/expenses/{id}', 'ExpenseController@update')->name('expenses.update');
+Route::put('/expenses/{id}', 'ExpenseController@update')->name('expense.update');
 
 # Get route to confirm deletion of an expense
-Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expenses.destroy');
+Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expense.destroy');
 
 # Delete route to actually destroy the book
-Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expenses.destroy');
+Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expense.destroy');
 
 
 

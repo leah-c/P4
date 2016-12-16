@@ -59,7 +59,7 @@ Expense Tracker
       <td>{{$expense->description}}</td>
       <td>{{$expense->category_id}}</td>
       <td><a href="#" class="btn btn-sm btn-warning " id="edit_expense"><span class="glyphicon glyphicon-edit"></span></a>
-        <td><a href="#" class="btn btn-sm btn-danger " id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
+      <td><a href="#" class="btn btn-sm btn-danger " id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
         </tr>
         @endforeach
 
