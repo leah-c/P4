@@ -38,8 +38,9 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar fa" aria-hidden="true"></i></span>
-                      <input type="date" class="form-control" name="name" id="fname"  required="" placeholder="yyyy-mm-dd" value = "2015-03-03"/>
+                      <input type="date" class="form-control" name="expense_date" id="dateOfExpense"  required="" placeholder="yyyy-mm-dd" value = "2015-03-03"/>
                     </div>
+                    <div class='error'>{{ $errors->first('expense_date') }}</div>
                   </div>
                 </div>
 
@@ -48,8 +49,9 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-usd fa-lg" aria-hidden="true"></i></span>
-                      <input type="decimal" class="form-control" name="expenseAmount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "10.00"/>
+                      <input type="numeric" class="form-control" name="amount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "10.00"/>
                     </div>
+                    <div class='error'>{{ $errors->first('amount') }}</div>
                   </div>
                 </div>
 
@@ -80,6 +82,15 @@ Expense Tracker
           </div>
         </div>
 
+        <!-- LeahC added 12/16/16 -->
+{{--        @if(count($errors)>0)
+          <ul>
+            @foreach($errors->all() as $error)
+              <li>{{$error}}</li>
+            @endforeach
+          </ul>
+        @endif
+--}}
         <script type="text/javascript" src="assets/js/bootstrap.js"></script>
 
         @endsection
