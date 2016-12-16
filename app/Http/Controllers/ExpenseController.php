@@ -47,6 +47,7 @@ class ExpenseController extends Controller
     $this->validate($request, [
       'expense_date' => 'required | date',
       'amount' => 'required | numeric',
+      'category' => 'required',
       'description' => 'max:50',
     ]);
 
@@ -54,6 +55,7 @@ class ExpenseController extends Controller
     $expense = new Expense;
     $expense->expense_date = Input::get('expense_date');
     $expense->amount= Input::get('amount');
+    $expense->category_id= Input::get('category');
     $expense->user_id = '1';
 
     # check to see if an expense desc was created
@@ -62,10 +64,10 @@ class ExpenseController extends Controller
     };
 
     # check to see if a category was selected
-    if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
+    /*if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
       $expense->category_id = Input::get('category_id');
     };
-
+    */
     $expense->save();
 
     #$expenses = Expense::orderBy('expense_date','descending')->get();
@@ -117,6 +119,7 @@ class ExpenseController extends Controller
     $this->validate($request, [
       'expense_date' => 'required | date',
       'amount' => 'required | numeric',
+      'category' => 'required',
       'description' => 'max:50',
     ]);
 
