@@ -29,7 +29,7 @@ Expense Tracker
             <div class="well">
 
               <!-- send form input to be validated -->
-              <form id="loginForm" method="POST" action = "/validate_acct">
+              <form id="loginForm" method="POST" action = "/home">
 
                 {{ csrf_field() }}
 
