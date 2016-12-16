@@ -24,12 +24,13 @@ class IndexController extends Controller
     #directs user to the Expense Tracker sign in/ registration page
     #return view('home');
 
-    $expenses = Expense::orderBy('expense_date','descending')->get();
+    #$expenses = Expense::orderBy('expense_date','descending')->get(); LeahC 12/16
     #dump($expenses);
     #                    with(what you want to call it in the view, var name)
     #return view('home')->with('expenses', $expenses);
     #as an Array
-    return view('home')->with(['expenses'=> $expenses]);
+    #return view('home')->with(['expenses'=> $expenses]); LeahC 12/16
+    return view('home');
   }
   /**
   * Show the form for creating a new resource.
