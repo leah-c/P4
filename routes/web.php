@@ -12,8 +12,10 @@
 */
 
 # Direct user to the Expense Tracker sign in/registration page
-# working
 Route::get('/', 'IndexController@index')->name('expense_tracker.index');
+
+# Direct user to the Expense Tracker sign in/registration page
+Route::post('/', 'AccountController@validateAccount')->name('expense_tracker.index');
 
 # Direct user to the Expense Tracker landing page after adding and expense
 Route::get('/home', 'IndexController@homepage')->name('expense_tracker.home');
@@ -23,11 +25,13 @@ Route::get('/home', 'IndexController@homepage')->name('expense_tracker.home');
 Route::post('/home', 'IndexController@homepage')->name('expense_tracker.home');
 
 #Direct user to the registration form page
-# working
-Route::get('/account_reg', 'AccountController@registerAccount')->name('account_reg.index');
+Route::get('/register_new_account', 'AccountController@registerAccount')->name('new_account.store');
 
 # Show all expenses
 Route::get('/expenses', 'ExpenseController@index')->name('expenses.index');
+
+# Shaow all expenses after log in
+Route::post('/expenses/home', 'ExpenseController@index')->name('expenses.index');
 
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expenses.create');
