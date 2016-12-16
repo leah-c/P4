@@ -76,6 +76,7 @@ Expense Tracker
                 </div>
 
                 <button type="submit" value="addNewExpense" name="submit" class="btn btn-success btn-block">Add Expense</button>
+                <button type="submit" value="cancel" name="cancel" class="btn btn-danger btn-block">Cancel</button>
               </form>
 
             </div>
