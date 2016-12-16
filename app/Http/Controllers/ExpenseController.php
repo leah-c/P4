@@ -32,7 +32,8 @@ class ExpenseController extends Controller
   */
   public function create()
   {
-    //
+    return view('add_expense');
+
   }
 
   /**
