@@ -46,9 +46,9 @@ class ExpenseController extends Controller
     #dump($request);
     # Validate
     $this->validate($request, [
-        'expense_date' => 'required | date',
-        'amount' => 'required | numeric',
-        'description' => 'max:50',
+      'expense_date' => 'required | date',
+      'amount' => 'required | numeric',
+      'description' => 'max:50',
     ]);
 
     // store
@@ -64,7 +64,7 @@ class ExpenseController extends Controller
 
     # check to see if a category was selected
     if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
-        $expense->category_id = Input::get('category_id');
+      $expense->category_id = Input::get('category_id');
     };
 
     $expense->save();
@@ -114,17 +114,43 @@ class ExpenseController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
-  }
+    # Validate
+    $this->validate($request, [
+      'expense_date' => 'required | date',
+      'amount' => 'required | numeric',
+      'description' => 'max:50',
+    ]);
 
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
+    # Find and update expense
+    $expense = Expense::find($request->id);
+    $expense->expense_date = $request->expense_date;
+    $expense->amount = $request->amount;
+
+    # check to see if an expense desc was created
+    if (isset( $_POST['description']) && $_POST['description'] != '') {
+      $expense->description = $request->description;
+    };
+
+    /*    # check to see if a category was selected
+    if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
+    $expense->category_id = Input::get('category_id');
+  };
   */
-  public function destroy($id)
-  {
-    //
-  }
+  $expense->save();
+
+  Session::flash('message', 'Your changes were saved.');
+  return redirect('/expenses');
+
+}
+
+/**
+* Remove the specified resource from storage.
+*
+* @param  int  $id
+* @return \Illuminate\Http\Response
+*/
+public function destroy($id)
+{
+  //
+}
 }
