@@ -66,7 +66,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = ""{{old('expense', $expense->category_id)}}"/>
+                      <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = "{{old('expense', $expense->category_id)}}"/>
                     </div>
                     <div class='error'>{{ $errors->first('category_id') }}</div>
                   </div>
