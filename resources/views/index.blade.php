@@ -30,7 +30,6 @@ Expense Tracker
             <div class="well">
 
               <form id="loginForm" method="POST" action = "/validate_acct">
-
                 {{ csrf_field() }}
 
                 <p class="lead">Existing Users Sign In</p>
@@ -81,11 +80,6 @@ Expense Tracker
       </div> <!--class="modal-body"-->
     </div> <!--class="modal-content"-->
   </div> <!--class="modal-overlay"-->
-
-
-  <script type="text/javascript">
-
-  </script>
 
 
   @endsection
