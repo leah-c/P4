@@ -29,7 +29,7 @@ Expense Tracker
           <div class="col-xs-6">
             <div class="well">
 
-              <form id="loginForm" method="POST" action = "/validate_acct">
+              <form id="loginForm" method="POST" action = "/home">
                 {{ csrf_field() }}
 
                 <p class="lead">Existing Users Sign In</p>
