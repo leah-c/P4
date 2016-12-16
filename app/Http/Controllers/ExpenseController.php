@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Expense;
 
 class ExpenseController extends Controller
 {
@@ -14,8 +15,8 @@ class ExpenseController extends Controller
   */
   public function index()
   {
-    #directs user to the Expense Tracker sign in/ registration page
-    return view('index');
+    $expenses = Expense::all();
+    dump($expenses);
   }
 
   /**
