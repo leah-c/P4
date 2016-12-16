@@ -29,7 +29,9 @@ Expense Tracker
           <div class="col-xs-6">
             <div class="well">
 
-              <form id="loginForm" method="POST" action = "/home">
+              <!--<form id="loginForm" method="POST" action = "/home">-->
+              <form id="loginForm" method="POST" action = "/expenses/home">
+
                 {{ csrf_field() }}
 
                 <p class="lead">Existing Users Sign In</p>
@@ -74,7 +76,7 @@ Expense Tracker
               <li><span class="fa fa-check text-success"></span> Categorize and organize expenses</li>
               <li><span class="fa fa-check text-success"></span> View snapshot of spending habits</li>
             </ul>
-            <p><a href="account_reg" class="btn btn-info btn-block">Sign Me Up!</a></p>
+            <p><a href="register_new_account" class="btn btn-info btn-block">Sign Me Up!</a></p>
           </div>
         </div>
       </div> <!--class="modal-body"-->
