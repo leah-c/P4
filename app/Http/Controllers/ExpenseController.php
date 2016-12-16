@@ -8,6 +8,17 @@ use DB;
 class ExpenseController extends Controller
 {
   /**
+  * Display a listing of the resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function index()
+  {
+    #directs user to the Expense Tracker sign in/ registration page
+    return view('index');
+  }
+
+  /**
   * Show the form for creating a new resource.
   *
   * @return \Illuminate\Http\Response
