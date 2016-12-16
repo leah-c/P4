@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Expense;
 
 class IndexController extends Controller
 {
@@ -15,12 +16,20 @@ class IndexController extends Controller
   {
     #directs user to the Expense Tracker sign in/ registration page
     return view('index');
+
   }
 
   public function homepage()
   {
     #directs user to the Expense Tracker sign in/ registration page
-    return view('home');
+    #return view('home');
+
+    $expenses = Expense::all();
+    dump($expenses);
+    #                    with(what you want to call it in the view, var name)
+    #return view('home')->with('expenses', $expenses);
+    #as an Array
+    return view('home')->with(['expenses'=> $expenses]);
   }
   /**
   * Show the form for creating a new resource.
