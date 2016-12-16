@@ -38,7 +38,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="fname"  required="" placeholder="Full Name" value = "myName"/>
+                      <input type="text" class="form-control" name="name" id="name"  required="" placeholder="Full Name" value = "myName"/>
                     </div>
                   </div>
                 </div>
