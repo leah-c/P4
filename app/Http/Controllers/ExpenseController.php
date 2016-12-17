@@ -32,7 +32,24 @@ class ExpenseController extends Controller
   */
   public function create()
   {
-    return view('add_expense');
+    #Category
+    $categories = Category::orderBy('category_name', 'ASC')->get();
+
+    #dump($categories);
+
+    $categories_for_dropdown = [];
+
+    foreach($categories as $category){
+      $categories_for_dropdown[$category->id]=$category->category_name;
+    }
+
+    return view('add_expense')->with(
+      [
+        'categories_for_dropdown' => $categories_for_dropdown,
+      ]
+    );
+
+    #return view('add_expense');
 
   }
 
@@ -44,26 +61,32 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
+    dump($request);
     # Validate
     $this->validate($request, [
       'expense_date' => 'required | date',
       'amount' => 'required | numeric',
-      'category_id' => 'required',
+      'category_name' => 'required',
       'description' => 'max:50',
     ]);
 
+    // Grab the category id associate with the category_name being passed from the add_expense view
+    $selected_category =
+      DB::table('categories')->where('category_name', $request->category_name )->first();
+
+    $selected_category_id = $selected_category->id;
     // store
     $expense = new Expense;
-    $expense->expense_date = Input::get('expense_date');
-    $expense->amount= Input::get('amount');
-    $expense->category_id= Input::get('category_id');
+    $expense->expense_date = $request->expense_date;
+
+    $expense->amount= $request->amount;
+    $expense->category_id= $selected_category_id;
     $expense->user_id = '1';
 
     # check to see if an expense desc was created
     if (isset( $_POST['description']) && $_POST['description'] != '') {
       $expense->description = Input::get('description');
     };
-
 
   $expense->save();
 
