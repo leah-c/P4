@@ -20,7 +20,7 @@ Expense Tracker
   <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="myAccRegModalLabel">Edit Expense</h2>
+        <h2 class="modal-title" id="myAccRegModalLabel">Delete Expense</h2>
       </div>
 
       <div class="modal-body">
@@ -29,7 +29,7 @@ Expense Tracker
             <div class="well">
 
               <!-- send form input to be validated -->
-              <form id="edit_expense_form" method="POST" action = "/expenses/{{ $expense->id }}">
+              <form id="delete_expense_form" method="POST" action = "/expenses/{{ $expense->id }}">
 
                 {{ method_field('PUT') }}
 
@@ -89,7 +89,7 @@ Expense Tracker
 
 
                 <div class="form-actions">
-                  <button type="submit" value="save" name="save_expense_changes" class="btn btn-success btn-block">Save Changes</button>
+                  <button type="submit" value="save" name="confirm_expense_deletion" class="btn btn-success btn-block">Delete Expense</button>
                   <button type="button" class="btn btn-danger btn-block" value="Cancel" name="cancel" onclick="location.href = '/expenses/home';">Cancel</button>
                 </div>
               </form>
