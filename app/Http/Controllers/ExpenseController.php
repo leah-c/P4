@@ -20,9 +20,14 @@ class ExpenseController extends Controller
   */
   public function index()
   {
-    #$expenses = Expense::all();
+    $categories = Category::all();
     $expenses = Expense::orderBy('expense_date', 'descending')->get(); #query
-    return view('view_expenses')->with(['expenses'=> $expenses]); //LeahC 12/16
+
+    return view('view_expenses')->with(
+      [
+        'expenses'=> $expenses,
+        'categories'=> $categories,
+      ]);
   }
 
   /**
@@ -35,8 +40,6 @@ class ExpenseController extends Controller
     #Category
     $categories = Category::orderBy('category_name', 'ASC')->get();
 
-    #dump($categories);
-
     $categories_for_dropdown = [];
 
     foreach($categories as $category){
@@ -48,8 +51,6 @@ class ExpenseController extends Controller
         'categories_for_dropdown' => $categories_for_dropdown,
       ]
     );
-
-    #return view('add_expense');
 
   }
 
