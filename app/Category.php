@@ -37,13 +37,20 @@ class Category extends Model
     return $categories_for_dropdown;
   }
 
-  public static function getCategoryName($id) {
+  public static function getCategoryNameByID($id) {
 
     # Categories
-    $category_name = Category::where('id', $id)->first();
-    //$categories = Category::find()->get();
+    $category = Category::where('id', $id)->first();
 
-    dd($category_name);
+    return $category;
+  }
+
+  public static function getCategoryIDByName($category_name) {
+
+    # Categories
+    $category = Category::where('category_name', $category_name)->first();
+
+    return $category;
   }
 
 }
