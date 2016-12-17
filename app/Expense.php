@@ -18,9 +18,9 @@ class Expense extends Model
   }
 
 
-  /*public function user() {
+  public function user() {
     return $this->belongsTo('App\User');
-  }*/
+  }
 
   /* End Relationship Methods */
 }
