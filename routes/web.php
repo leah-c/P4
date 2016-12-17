@@ -57,3 +57,7 @@ Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expense.d
 
 # Delete route to actually destroy the book
 Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expense.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
