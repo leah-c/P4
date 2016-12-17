@@ -76,13 +76,10 @@ Expense Tracker
                 <button type="submit" value="register" name="submit" class="btn btn-success btn-block">Register</button>
 
               </form>
-
-
             </div>
           </div>
         </div>
 
-        <!--<script type="text/javascript" src="assets/js/bootstrap.js"></script>-->
 
         @endsection
 

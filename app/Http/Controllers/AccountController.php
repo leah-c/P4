@@ -20,17 +20,6 @@ class AccountController extends Controller
   public function validateAccount(Request $request)
   {
 
-    /**
-    * To Dos
-    *
-    *   1. determine if this is a log-in event or a account creation Environment
-    *   2. redirect user to
-    *       a. the account reg page if errors are encountered while creating a new account
-    *       b. the sign page if errors are encountered while signing in
-    *   3. display errors on the page if any
-    *   4. create flash message upon successful login or successful account creation
-    */
-
 
     # Validation
     if($request->input('submit') == 'login'){
@@ -39,147 +28,110 @@ class AccountController extends Controller
 
       echo 'request: '.$requestType.' '. 'password: '. $loginPW;
 
-      /*
-      $this->validate($request, [
-      'email' => 'required',
-      'password' => 'required|min:1|max:50',
-    ])
-    */
+    }
+
+    elseif ($request->input('submit') == 'register'){
+      $requestType = $request->input('submit');
+      $loginPW = $request->input('password');
+
+      echo 'request: '.$requestType.' '. 'password: '. $loginPW;
+
+    }
+    return view('home');
+  } /*end validateAccount()*/
+
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+  public function create()
+  {
+    //
   }
 
-  elseif ($request->input('submit') == 'register'){
-    $requestType = $request->input('submit');
-    $loginPW = $request->input('password');
-
-    echo 'request: '.$requestType.' '. 'password: '. $loginPW;
-    /*
-    $this->validate($request, [
-    'firstname' => 'required|min:1|max:255',
-    'lastname' => 'required|min:1|max:255',
-    'email' => 'required',
-    'password' => 'required|min:1|max:50',
-    'confirm_password' => 'required|min:1|max:50',
-  ])
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @return \Illuminate\Http\Response
   */
-}
-return view('home');
-} /*end validateAccount()*/
+  public function store(Request $request)
+  {
+    # Validate
+    $this->validate($request, [
+      'name' => 'required ',
+      'email' => 'required | email',
+      'password' => 'required | alphanumeric',
+      'confirm_password' => 'required | alphanumeric',
+    ]);
 
+    // store
+    $expense = new Expense;
+    $expense->expense_date = Input::get('expense_date');
+    $expense->amount= Input::get('amount');
+    $expense->user_id = '1';
 
-/*    public function createUserAccount(Request $request)
-{
-# Validation
-$this->validate($request, [
-'numParagraphs' => 'required|numeric|min:1|max:50',
-]);
-*/
-/*
-# generate paragraphs
-$numParagraphs = $request->input('numParagraphs');
-$generator = new \Badcow\LoremIpsum\Generator();
-$paragraphs = $generator->getParagraphs($numParagraphs);
+    # check to see if a category was selected
+    if (isset( $_POST['description']) && $_POST['description'] != '') {
+      $expense->description = Input::get('description');
+    };
 
-return view('generator.ipsum_confirm')
-->with('numParagraphs', $numParagraphs)
-->with(compact('paragraphs'));
-*/
+    # check to see if an expense desc was created
+    if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
+      $expense->category_id = Input::get('category_id');
+    };
 
+    $expense->save();
 
-/**
-* Show the form for creating a new resource.
-*
-* @return \Illuminate\Http\Response
-*/
-public function create()
-{
-  //
-}
+    // redirect
+    Session::flash('message', 'Successfully created a new expense!');
 
-/**
-* Store a newly created resource in storage.
-*
-* @param  \Illuminate\Http\Request  $request
-* @return \Illuminate\Http\Response
-*/
-public function store(Request $request)
-{
-  # Validate
-  $this->validate($request, [
-    'name' => 'required ',
-    'email' => 'required | email',
-    'password' => 'required | alphanumeric',
-    'confirm_password' => 'required | alphanumeric',
-  ]);
+    return Redirect::to('/expenses'); //LeahC 12/16
+  }
 
-  // store
-  $expense = new Expense;
-  $expense->expense_date = Input::get('expense_date');
-  $expense->amount= Input::get('amount');
-  $expense->user_id = '1';
+  /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function show($id)
+  {
+    //
+  }
 
-  # check to see if a category was selected
-  if (isset( $_POST['description']) && $_POST['description'] != '') {
-    $expense->description = Input::get('description');
-  };
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function edit($id)
+  {
+    //
+  }
 
-  # check to see if an expense desc was created
-  if (isset( $_POST['category_id']) && $_POST['category_id'] != '') {
-    $expense->category_id = Input::get('category_id');
-  };
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function update(Request $request, $id)
+  {
+    //
+  }
 
-  $expense->save();
-
-  #$expenses = Expense::orderBy('expense_date','descending')->get();
-
-  // redirect
-  Session::flash('message', 'Successfully created a new expense!');
-  #$return Redirect::to('/home')->with(['expenses'=>$expenses]);
-  #return Redirect::to('/home'); //LeahC 12/16
-  return Redirect::to('/expenses'); //LeahC 12/16
-}
-
-/**
-* Display the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function show($id)
-{
-  //
-}
-
-/**
-* Show the form for editing the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function edit($id)
-{
-  //
-}
-
-/**
-* Update the specified resource in storage.
-*
-* @param  \Illuminate\Http\Request  $request
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function update(Request $request, $id)
-{
-  //
-}
-
-/**
-* Remove the specified resource from storage.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function destroy($id)
-{
-  //
-}
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function destroy($id)
+  {
+    //
+  }
 }

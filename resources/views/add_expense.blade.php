@@ -61,7 +61,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <select class="form-control" name="category_name" id="expenseCategory">
                       @foreach($categories_for_dropdown as $category_id=>$category_name)
-                        <option >{{$category_name}} </option>
+                      <option >{{$category_name}} </option>
                       @endforeach
                     </select>
                     <div class='error'>{{ $errors->first('category_id') }}</div>
@@ -88,23 +88,14 @@ Expense Tracker
           </div>
         </div>
 
-        <!-- LeahC added 12/16/16 -->
-        {{--        @if(count($errors)>0)
-          <ul>
-            @foreach($errors->all() as $error)
-            <li>{{$error}}</li>
-            @endforeach
-          </ul>
-          @endif
+        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+        @endsection
+
+        {{--
+          This `body` section will be yielded right before the closing </body> tag.
+          Use it to add specific things that *this* View needs at the end of the body,
+          such as a page specific JavaScript files.
           --}}
-          <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
+          @section('body')
           @endsection
-
-          {{--
-            This `body` section will be yielded right before the closing </body> tag.
-            Use it to add specific things that *this* View needs at the end of the body,
-            such as a page specific JavaScript files.
-            --}}
-            @section('body')
-            @endsection

@@ -26,63 +26,48 @@ Expense Tracker
   @endif
 
   <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a>
-  <!--<p> Select from one of the following options. </p>
-  <ul>
-  <li class="expenseOp"><a href="#" class="btn btn-sm btn-primary btn-block" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a></li>
-  <li class="expenseOp"><a href="#" class="btn btn-sm btn-danger btn-block" id="delete_expense"><span class="glyphicon glyphicon-remove"></span> Delete an Expense</a></li>
-  <li class="expenseOp"><a href="#" class="btn btn-sm btn-warning btn-block" id="edit_expense"><span class="glyphicon glyphicon-edit"></span> Edit an Expense</a></li>
-  <li class="expenseOp"><a href="#" class="btn btn-sm btn-primary btn-block" id="view_expense"><span class="glyphicon glyphicon-th-list"></span> View Expenses</a></li>
-</ul>
--->
-
-@if (isset($expenses) && $expenses->count() > 0)
-{{--
-{{dump($categories)}}
-{{dump($categories->count())}}
---}}
-<table data-toggle="table" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Expense Date</th>
-      <th>Amount</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($expenses as $expense)
-    <tr>
-      <td>{{$expense->expense_date}}</td>
-      <td>${{$expense->amount}}</td>
-      <td>{{$expense->description}}</td>
-      <td>{{$expense->category_id}}</td>
-
-      {{--
-        @foreach($categories_for_dropdown as $category_id=>$category_name)
-          <option
-          {{($category_id == $expense->category_id) ? 'SELECTED' : ' '}}
-            value="{{$category_id}}">{{$category_name}}</option>
-        @endforeach
-      --}}
-      <td><a href="/expenses/{{$expense->id}}/edit" class="btn btn-sm btn-warning " name="edit_expense" id="edit_expense"><span class="glyphicon glyphicon-edit"></span></a>
-      <td><a href="/expenses/{{$expense->id}}/delete" class="btn btn-sm btn-danger " name= "delete_expense" id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
-        </tr>
-        @endforeach
-
-      </tbody>
-    </table>
-    @endif
-
-    @endsection
 
 
-    <script src="bootstrap-table.js"></script>
-    {{--
-      This `body` section will be yielded right before the closing </body> tag.
-      Use it to add specific things that *this* View needs at the end of the body,
-      such as a page specific JavaScript files.
-      --}}
-      @section('body')
+  @if (isset($expenses) && $expenses->count() > 0)
+
+  <table data-toggle="table" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Expense Date</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+
+      @foreach($expenses as $expense)
+      <tr>
+        <td>{{$expense->expense_date}}</td>
+        <td>${{$expense->amount}}</td>
+        <td>{{$expense->description}}</td>
+        <td>{{$expense->category_id}}</td>
+
+        <td><a href="/expenses/{{$expense->id}}/edit" class="btn btn-sm btn-warning " name="edit_expense" id="edit_expense"><span class="glyphicon glyphicon-edit"></span></a>
+          <td><a href="/expenses/{{$expense->id}}/delete" class="btn btn-sm btn-danger " name= "delete_expense" id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
+          </tr>
+          @endforeach
+
+        </tbody>
+      </table>
+      @endif
+
       @endsection
+
+
+      <script src="bootstrap-table.js"></script>
+      {{--
+        This `body` section will be yielded right before the closing </body> tag.
+        Use it to add specific things that *this* View needs at the end of the body,
+        such as a page specific JavaScript files.
+        --}}
+        @section('body')
+        @endsection
