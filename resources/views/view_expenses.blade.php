@@ -37,8 +37,8 @@ Expense Tracker
 
 @if (isset($expenses) && $expenses->count() > 0)
 {{--
-{{dump($expenses)}}
-{{dump($expenses->count())}}
+{{dump($categories)}}
+{{dump($categories->count())}}
 --}}
 <table data-toggle="table" class="table table-striped">
   <thead>
@@ -58,6 +58,14 @@ Expense Tracker
       <td>${{$expense->amount}}</td>
       <td>{{$expense->description}}</td>
       <td>{{$expense->category_id}}</td>
+
+      {{--
+        @foreach($categories_for_dropdown as $category_id=>$category_name)
+          <option
+          {{($category_id == $expense->category_id) ? 'SELECTED' : ' '}}
+            value="{{$category_id}}">{{$category_name}}</option>
+        @endforeach
+      --}}
       <td><a href="/expenses/{{$expense->id}}/edit" class="btn btn-sm btn-warning " name="edit_expense" id="edit_expense"><span class="glyphicon glyphicon-edit"></span></a>
       <td><a href="/expenses/{{$expense->id}}/delete" class="btn btn-sm btn-danger " name= "delete_expense" id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
         </tr>
