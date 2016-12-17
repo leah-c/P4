@@ -180,6 +180,29 @@ public function update(Request $request, $id)
 
 }
 
+public function delete($id){
+  #TO DO
+  # Validate that it is a good $id being passed in
+  $expense = Expense::find($id);
+
+  #Category
+  $categories = Category::orderBy('category_name', 'ASC')->get();
+
+  #dump($categories);
+
+  $categories_for_dropdown = [];
+
+  foreach($categories as $category){
+    $categories_for_dropdown[$category->id]=$category->category_name;
+  }
+
+  return view('delete_expense')->with(
+    [
+      'expense'=>$expense,
+      'categories_for_dropdown' => $categories_for_dropdown,
+    ]
+  );
+}
 /**
 * Remove the specified resource from storage.
 *
