@@ -28,24 +28,26 @@ class ExpenseController extends Controller
         'expenses'=> $expenses,
         'categories'=> $categories,
       ]);
-  }
-
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    #Category
-    $categories = Category::orderBy('category_name', 'ASC')->get();
-
-    $categories_for_dropdown = [];
-
-    foreach($categories as $category){
-      $categories_for_dropdown[$category->id]=$category->category_name;
     }
 
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+      #Category
+      $categories_for_dropdown = Category::getForDropdown();
+      /*
+      $categories = Category::orderBy('category_name', 'ASC')->get();
+
+      $categories_for_dropdown = [];
+
+      foreach($categories as $category){
+      $categories_for_dropdown[$category->id]=$category->category_name;
+    }
+    */
     return view('add_expense')->with(
       [
         'categories_for_dropdown' => $categories_for_dropdown,
@@ -72,7 +74,7 @@ class ExpenseController extends Controller
 
     // Grab the category id associate with the category_name being passed from the add_expense view
     $selected_category =
-      DB::table('categories')->where('category_name', $request->category_name )->first();
+    DB::table('categories')->where('category_name', $request->category_name )->first();
 
     $selected_category_id = $selected_category->id;
     // store
@@ -88,143 +90,140 @@ class ExpenseController extends Controller
       $expense->description = Input::get('description');
     };
 
-  $expense->save();
+    $expense->save();
 
-  // redirect
-  Session::flash('message', 'Successfully created a new expense!');
-  return Redirect::to('/expenses');
-}
-
-
-/**
-* Display the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function show($id)
-{
-  $expense = Expense::find($id);
-
-  if(is_null($expense)) {
-    Session::flash('message','Expense not found');
-    return redirect('/expenses/home');
+    // redirect
+    Session::flash('message', 'Successfully created a new expense!');
+    return Redirect::to('/expenses');
   }
 
-  return view('expenses.show')->with('expense', $id);
-}
 
-/**
-* Show the form for editing the specified resource.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function edit($id)
-{
-  #TO DO
-  # Validate that it is a good $id being passed in
-  $expense = Expense::find($id);
+  /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function show($id)
+  {
+    $expense = Expense::find($id);
 
-  #Category
-  $categories = Category::orderBy('category_name', 'ASC')->get();
+    if(is_null($expense)) {
+      Session::flash('message','Expense not found');
+      return redirect('/expenses/home');
+    }
 
-  #dump($categories);
-
-  $categories_for_dropdown = [];
-
-  foreach($categories as $category){
-    $categories_for_dropdown[$category->id]=$category->category_name;
+    return view('expenses.show')->with('expense', $id);
   }
 
-  return view('edit_expense')->with(
-    [
-      'expense'=>$expense,
-      'categories_for_dropdown' => $categories_for_dropdown,
-    ]
-  );
-}
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function edit($id)
+  {
+    #TO DO
+    # Validate that it is a good $id being passed in
+    $expense = Expense::find($id);
 
-/**
-* Update the specified resource in storage.
-*
-* @param  \Illuminate\Http\Request  $request
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function update(Request $request, $id)
-{
-  # Validate
-  $this->validate($request, [
-    'expense_date' => 'required | date',
-    'amount' => 'required | numeric',
-    'category_id' => 'required',
-    'description' => 'max:50',
-  ]);
+    #Category
+    $categories = Category::orderBy('category_name', 'ASC')->get();
 
-  # Find and update expense
-  $expense = Expense::find($request->id);
-  $expense->expense_date = $request->expense_date;
-  $expense->amount = $request->amount;
-  $expense->category_id= $request->category_id;
 
-  # check to see if an expense desc was created
-  if (isset( $_POST['description']) && $_POST['description'] != '') {
-    $expense->description = $request->description;
-  };
+    $categories_for_dropdown = [];
 
-  $expense->save();
+    foreach($categories as $category){
+      $categories_for_dropdown[$category->id]=$category->category_name;
+    }
 
-  Session::flash('message', 'Your changes were saved.');
-  return redirect('/expenses');
-
-}
-
-public function delete($id){
-  #TO DO
-  # Validate that it is a good $id being passed in
-  $expense = Expense::find($id);
-
-  #Category
-  $categories = Category::orderBy('category_name', 'ASC')->get();
-
-  #dump($categories);
-
-  $categories_for_dropdown = [];
-
-  foreach($categories as $category){
-    $categories_for_dropdown[$category->id]=$category->category_name;
+    return view('edit_expense')->with(
+      [
+        'expense'=>$expense,
+        'categories_for_dropdown' => $categories_for_dropdown,
+      ]
+    );
   }
 
-  return view('delete_expense')->with(
-    [
-      'expense'=>$expense,
-      'categories_for_dropdown' => $categories_for_dropdown,
-    ]
-  );
-}
-/**
-* Remove the specified resource from storage.
-*
-* @param  int  $id
-* @return \Illuminate\Http\Response
-*/
-public function destroy($id)
-{
-  # Get the book to be deleted
-  $expense = Expense::find($id);
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function update(Request $request, $id)
+  {
+    # Validate
+    $this->validate($request, [
+      'expense_date' => 'required | date',
+      'amount' => 'required | numeric',
+      'category_id' => 'required',
+      'description' => 'max:50',
+    ]);
 
-  if(is_null($expense)) {
+    # Find and update expense
+    $expense = Expense::find($request->id);
+    $expense->expense_date = $request->expense_date;
+    $expense->amount = $request->amount;
+    $expense->category_id= $request->category_id;
+
+    # check to see if an expense desc was created
+    if (isset( $_POST['description']) && $_POST['description'] != '') {
+      $expense->description = $request->description;
+    };
+
+    $expense->save();
+
+    Session::flash('message', 'Your changes were saved.');
+    return redirect('/expenses');
+
+  }
+
+  public function delete($id){
+    #TO DO
+    # Validate that it is a good $id being passed in
+    $expense = Expense::find($id);
+
+    #Category
+    $categories = Category::orderBy('category_name', 'ASC')->get();
+
+    $categories_for_dropdown = [];
+
+    foreach($categories as $category){
+      $categories_for_dropdown[$category->id]=$category->category_name;
+    }
+
+    return view('delete_expense')->with(
+      [
+        'expense'=>$expense,
+        'categories_for_dropdown' => $categories_for_dropdown,
+      ]
+    );
+  }
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+  public function destroy($id)
+  {
+    # Get the book to be deleted
+    $expense = Expense::find($id);
+
+    if(is_null($expense)) {
       Session::flash('message','Expense not found.');
       return redirect('/expenses');
+    }
+    
+
+    # Then delete the book
+    $expense->delete();
+
+    # Finish
+    Session::flash('message', 'Expense entered for ' . $expense->expense_date . ' in the amount of $'. $expense->amount.' was deleted.');
+    return redirect('/expenses');
   }
-
-
-  # Then delete the book
-  $expense->delete();
-
-  # Finish
-  Session::flash('message', 'Expense entered for ' . $expense->expense_date . ' in the amount of $'. $expense->amount.' was deleted.');
-  return redirect('/expenses');
-}
 }
