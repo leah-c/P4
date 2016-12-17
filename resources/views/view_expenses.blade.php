@@ -25,7 +25,11 @@ Expense Tracker
   <div class="alert alert-success">{{ Session::get('message') }}</div>
   @endif
 
-  <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> Add an Expense</a>
+
+  <div class="col-md-4 col-md-offset-10">
+    <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> {{"Add an Expense"}}</a>
+  </div>
+
 
 
   @if (isset($expenses) && $expenses->count() > 0)
@@ -41,7 +45,7 @@ Expense Tracker
         <th>Delete</th>
       </tr>
     </thead>
-    
+
     <tbody>
 
       @foreach($expenses as $expense)
@@ -58,8 +62,13 @@ Expense Tracker
 
         </tbody>
       </table>
+      @else
+      <div class="col-md-6 col-md-offset-3">
+        <p id="no_expenses_text" class="text-center">
+          {{"There are no expenses to be displayed. Get started by adding an expense."}}
+        </p>
+      </div>
       @endif
-
       @endsection
 
 
