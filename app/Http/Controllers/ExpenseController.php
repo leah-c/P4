@@ -62,7 +62,6 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
-    dump($request);
     # Validate
     $this->validate($request, [
       'expense_date' => 'required | date',
