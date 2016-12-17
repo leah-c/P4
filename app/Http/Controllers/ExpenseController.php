@@ -212,6 +212,20 @@ public function delete($id){
 */
 public function destroy($id)
 {
-  //
+  # Get the book to be deleted
+  $expense = Expense::find($id);
+
+  if(is_null($expense)) {
+      Session::flash('message','Expense not found.');
+      return redirect('/expenses');
+  }
+
+
+  # Then delete the book
+  $expense->delete();
+
+  # Finish
+  Session::flash('message', 'Expense entered for ' . $expense->expense_date . ' in the amount of $'. $expense->amount.' was deleted.');
+  return redirect('/expenses');
 }
 }
