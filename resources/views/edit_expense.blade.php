@@ -65,7 +65,9 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <select class="form-control" name="category_id" id="expenseCategory">
                       @foreach($categories_for_dropdown as $category_id=>$category_name)
-                        <option value="{{$category_id}}">{{$category_name}}</option>
+                        <option
+                        {{($category_id == $expense->category_id) ? 'SELECTED' : ' '}}
+                          value="{{$category_id}}">{{$category_name}}</option>
                       @endforeach
                     </select>
                     <div class='error'>{{ $errors->first('category_id') }}</div>
