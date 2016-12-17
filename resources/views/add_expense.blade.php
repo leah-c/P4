@@ -68,18 +68,6 @@ Expense Tracker
                   </div>
                 </div>
 
-<!--
-                <div class="form-group">
-                  <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
-                  <div class="cols-sm-10">
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-list fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="category_id" id="expenseCategory"  placeholder="Expense category" value = ""/>
-                    </div>
-                    <div class='error'>{{ $errors->first('category_id') }}</div>
-                  </div>
-                </div>
--->
 
                 <div class="form-group">
                   <label for="expenseDesc" class="cols-sm-2 control-label">Description</label>
