@@ -103,7 +103,6 @@ public function create()
 */
 public function store(Request $request)
 {
-  #dump($request);
   # Validate
   $this->validate($request, [
     'name' => 'required ',
