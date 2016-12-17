@@ -53,7 +53,7 @@ Expense Tracker
         <td>{{$expense->expense_date}}</td>
         <td>${{$expense->amount}}</td>
         <td>{{$expense->description}}</td>
-        <td>{{$expense->category_id}}</td>
+        <td>{{$expense->category_id}}</td>      
 
         <td><a href="/expenses/{{$expense->id}}/edit" class="btn btn-sm btn-warning " name="edit_expense" id="edit_expense"><span class="glyphicon glyphicon-edit"></span></a>
           <td><a href="/expenses/{{$expense->id}}/delete" class="btn btn-sm btn-danger " name= "delete_expense" id="remove_expense"><span class="glyphicon glyphicon-remove"></span></a>
