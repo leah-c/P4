@@ -75,7 +75,7 @@ class ExpenseController extends Controller
       $expense->expense_date = $request->expense_date;
 
       $expense->amount= $request->amount;
-      $expense->category_id= $selected_category_id;
+      $expense->category_id= $selected_category->id;
       $expense->user_id = '1';
 
       # check to see if an expense desc was created
