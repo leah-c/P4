@@ -56,7 +56,19 @@ Expense Tracker
                   </div>
                 </div>
 
+                <div class="form-group">
+                  <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
+                  <div class="cols-sm-10">
+                    <select class="form-control" name="category_name" id="expenseCategory">
+                      @foreach($categories_for_dropdown as $category_id=>$category_name)
+                        <option >{{$category_name}} </option>
+                      @endforeach
+                    </select>
+                    <div class='error'>{{ $errors->first('category_id') }}</div>
+                  </div>
+                </div>
 
+<!--
                 <div class="form-group">
                   <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
                   <div class="cols-sm-10">
@@ -67,7 +79,7 @@ Expense Tracker
                     <div class='error'>{{ $errors->first('category_id') }}</div>
                   </div>
                 </div>
-
+-->
 
                 <div class="form-group">
                   <label for="expenseDesc" class="cols-sm-2 control-label">Description</label>
