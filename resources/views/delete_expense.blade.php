@@ -20,7 +20,7 @@ Expense Tracker
   <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="myAccRegModalLabel">Delete Expense</h2>
+        <h2 class="modal-title" id="deleteModalLabel">Confirm Expense Deletion</h2>
       </div>
 
       <div class="modal-body">
@@ -31,7 +31,7 @@ Expense Tracker
               <!-- send form input to be validated -->
               <form id="delete_expense_form" method="POST" action = "/expenses/{{ $expense->id }}">
 
-                {{ method_field('PUT') }}
+                {{ method_field('DELETE') }}
 
                 {{ csrf_field() }}
 
@@ -66,9 +66,9 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <select class="form-control" name="category_id" id="expenseCategory">
                       @foreach($categories_for_dropdown as $category_id=>$category_name)
-                        <option
-                        {{($category_id == $expense->category_id) ? 'SELECTED' : ' '}}
-                          value="{{$category_id}}">{{$category_name}}</option>
+                      <option
+                      {{($category_id == $expense->category_id) ? 'SELECTED' : ' '}}
+                      value="{{$category_id}}">{{$category_name}}</option>
                       @endforeach
                     </select>
                     <div class='error'>{{ $errors->first('category_id') }}</div>
@@ -89,8 +89,8 @@ Expense Tracker
 
 
                 <div class="form-actions">
-                  <button type="submit" value="save" name="confirm_expense_deletion" class="btn btn-success btn-block">Delete Expense</button>
-                  <button type="button" class="btn btn-danger btn-block" value="Cancel" name="cancel" onclick="location.href = '/expenses/home';">Cancel</button>
+                  <button type="submit" value="save" name="confirm_expense_deletion" class="btn btn-danger btn-block" >Confirm Deletion</button>
+                  <button type="button" class="btn btn-primary btn-block" value="Cancel" name="cancel" onclick="location.href = '/expenses/home';">Cancel</button>
                 </div>
               </form>
 
