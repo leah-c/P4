@@ -60,6 +60,7 @@ Expense Tracker
                   </div>
                 </div>
 
+
                 <div class="form-group">
                   <label for="expenseCategory" class="cols-sm-2 control-label">Category</label>
                   <div class="cols-sm-10">
@@ -85,6 +86,7 @@ Expense Tracker
                     <div class='error'>{{ $errors->first('description') }}</div>
                   </div>
                 </div>
+
 
                 <div class="form-actions">
                   <button type="submit" value="save" name="save_expense_changes" class="btn btn-success btn-block">Save Changes</button>
