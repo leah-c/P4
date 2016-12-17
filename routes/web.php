@@ -53,7 +53,7 @@ Route::get('/expenses/{id}/edit', 'ExpenseController@edit')->name('expense.edit'
 Route::put('/expenses/{id}', 'ExpenseController@update')->name('expense.update');
 
 # Get route to confirm deletion of an expense
-Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expense.destroy');
+Route::get('/expenses/{id}/delete', 'ExpenseController@delete')->name('expense.delete');
 
 # Delete route to actually destroy the book
 Route::delete('/expenses/{id}', 'ExpenseController@destroy')->name('expense.destroy');
