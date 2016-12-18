@@ -32,7 +32,7 @@ class CreateExpensesTable extends Migration
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       #$table->integer('category_id')->nullable();
-      $table->integer('user_id');
+      #$table->integer('user_id');
     });
   }
 
