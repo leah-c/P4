@@ -26,7 +26,7 @@ class ConnectExpensesAndUsers extends Migration
 
   public function down()
   {
-    Schema::table('books', function (Blueprint $table) {
+    Schema::table('expenses', function (Blueprint $table) {
 
       # ref: http://laravel.com/docs/5.1/migrations#dropping-indexes
       $table->dropForeign('expenses_user_id_foreign');
