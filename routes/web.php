@@ -18,7 +18,7 @@ Route::get('/', 'IndexController@index')->name('expense_tracker.index');
 Route::post('/', 'AccountController@validateAccount')->name('expense_tracker.index');
 
 # Direct user to the Expense Tracker landing page after adding and expense
-Route::get('/home', 'IndexController@homepage')->name('expense_tracker.home');
+Route::get('/home', 'IndexController@homepage')->name('expense_tracker.home')->middleware('auth');
 
 # Direct user to the Expense Tracker landing page after account registration/ sign in
 # will show expense table if user has any associated with their id
@@ -64,13 +64,13 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/show-login-status', function() {
 
-    # You may access the authenticated user via the Auth facade
-    $user = Auth::user();
+  # You may access the authenticated user via the Auth facade
+  $user = Auth::user();
 
-    if($user)
-        dump($user->toArray());
-    else
-        dump('You are not logged in.');
+  if($user)
+  dump($user->toArray());
+  else
+  dump('You are not logged in.');
 
-    return;
+  return;
 });
