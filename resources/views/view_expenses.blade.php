@@ -20,17 +20,10 @@ Expense Tracker
 
   <h2>Expense Tracker</h2>
 
-  <!-- will be used to show any messages -->
-  @if (Session::has('message'))
-  <div class="alert alert-success">{{ Session::get('message') }}</div>
-  @endif
-
 
   <div class="col-md-4 col-md-offset-10">
     <a href="/expenses/create" class="btn btn-sm btn-primary" id="add_expense"><span class="glyphicon glyphicon-plus"></span> {{"Add an Expense"}}</a>
   </div>
-
-
 
   @if (isset($expenses) && sizeof($expenses) > 0)
 
