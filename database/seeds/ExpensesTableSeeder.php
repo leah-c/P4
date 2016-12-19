@@ -22,6 +22,7 @@ class ExpensesTableSeeder extends Seeder
         'expense_date' => '2016-08-01',
         'amount' => '30',
         'category_id' => $category_id,
+        'description' => 'default expense',
         'user_id'=> '2',
       ]);
 
@@ -32,6 +33,7 @@ class ExpensesTableSeeder extends Seeder
         'expense_date' => '2016-09-01',
         'amount' => '12.16',
         'category_id' => $category_id,
+        'description' => 'default expense',
         'user_id'=> '2',
       ]);
 
@@ -42,6 +44,7 @@ class ExpensesTableSeeder extends Seeder
         'expense_date' => '2016-09-24',
         'amount' => '9.07',
         'category_id' => $category_id,
+        'description' => 'default expense',
         'user_id'=> '1',
       ]);
 
