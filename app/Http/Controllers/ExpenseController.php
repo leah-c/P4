@@ -21,10 +21,9 @@ class ExpenseController extends Controller
   public function index()
   {
     $user = Auth::user();
-    $hasExpensesToDisplay = false;
 
     if($user) {
-
+      
       $expenses = DB::table('expenses')
       ->Join('categories', 'categories.id', '=', 'expenses.category_id')
       ->Join('users','users.id', '=', 'expenses.user_id')
@@ -34,6 +33,30 @@ class ExpenseController extends Controller
       ->get();
 
       return view('view_expenses')->with(['expenses' => $expenses]);
+    }
+
+    else {
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
+  }
+
+  public function viewCategoryTotals()
+  {
+    $user = Auth::user();
+
+    if($user) {
+
+      $expenses = DB::table('expenses')
+      ->select( DB::raw('sum(expenses.amount) as expense_total,categories.category_name'))
+      ->Join('categories', 'categories.id', '=', 'expenses.category_id')
+      ->Join('users','users.id', '=', 'expenses.user_id')
+      ->where('expenses.user_id','=',$user->id)
+      ->groupBy('categories.category_name')
+      ->get();
+
+      return view('view_totals')->with(['expenses' => $expenses]);
     }
 
     else {
@@ -53,7 +76,7 @@ class ExpenseController extends Controller
     $user = Auth::user();
     #Category
     $categories_for_dropdown = Category::getForDropdown();
-    
+
     if($user){
       return view('add_expense')->with(
         [
