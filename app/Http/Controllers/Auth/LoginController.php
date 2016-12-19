@@ -53,7 +53,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        Session::flash('message','You have been logged out.'); # <-- NEW
+        Session::flash('message','You have been logged out.');
 
         return redirect('/');
     }
