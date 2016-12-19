@@ -138,22 +138,31 @@ class ExpenseController extends Controller
   */
   public function edit($id)
   {
-
+    $user = Auth::user();
     $expense = Expense::find($id);
 
-    if(is_null($expense)) {
-      Session::flash('error_message','Expense not found.');
-      return redirect('/expenses/home');
+    if($user){
+
+      if(is_null($expense)) {
+        Session::flash('error_message','Expense not found.');
+        return redirect('/expenses/home');
+      }
+
+      $categories_for_dropdown = Category::getForDropdown();
+
+      return view('edit_expense')->with(
+        [
+          'expense'=>$expense,
+          'categories_for_dropdown' => $categories_for_dropdown,
+        ]
+      );
     }
 
-    $categories_for_dropdown = Category::getForDropdown();
-
-    return view('edit_expense')->with(
-      [
-        'expense'=>$expense,
-        'categories_for_dropdown' => $categories_for_dropdown,
-      ]
-    );
+    else{
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 
   /**
@@ -194,28 +203,36 @@ class ExpenseController extends Controller
     }
     else{
       // redirect
-      Session::flash('message', 'You are not logged in. Please log in to view and edit expense information.');
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
       return Redirect::to('/');
     }
   }
 
   public function delete($id){
-
+    $user = Auth::user();
     $expense = Expense::find($id);
 
-    if(is_null($expense)) {
-      Session::flash('error_message','Cannot complete delete operation. Expense not found.');
-      return redirect('/expenses/home');
+    if($user){
+      if(is_null($expense)) {
+        Session::flash('error_message','Cannot complete delete operation. Expense not found.');
+        return redirect('/expenses/home');
+      }
+
+      $categories_for_dropdown = Category::getForDropdown();
+
+      return view('delete_expense')->with(
+        [
+          'expense'=>$expense,
+          'categories_for_dropdown' => $categories_for_dropdown,
+        ]
+      );
+    }
+    else{
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
     }
 
-    $categories_for_dropdown = Category::getForDropdown();
-
-    return view('delete_expense')->with(
-      [
-        'expense'=>$expense,
-        'categories_for_dropdown' => $categories_for_dropdown,
-      ]
-    );
   }
   /**
   * Remove the specified resource from storage.
