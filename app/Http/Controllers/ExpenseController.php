@@ -50,14 +50,22 @@ class ExpenseController extends Controller
   */
   public function create()
   {
+    $user = Auth::user();
     #Category
     $categories_for_dropdown = Category::getForDropdown();
-
-    return view('add_expense')->with(
-      [
-        'categories_for_dropdown' => $categories_for_dropdown,
-      ]
-    );
+    
+    if($user){
+      return view('add_expense')->with(
+        [
+          'categories_for_dropdown' => $categories_for_dropdown,
+        ]
+      );
+    }
+    else {
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 
   /**
