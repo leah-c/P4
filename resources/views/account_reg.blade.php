@@ -38,7 +38,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="name" id="name"  required="" placeholder="Full Name" value = "myName"/>
+                      <input type="text" class="form-control" name="name" id="name"  required="" placeholder="Full Name" value = ""/>
                     </div>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email" value = "myEmail"/>
+                      <input type="text" class="form-control" name="email" id="email"  required="" placeholder="Email" value = ""/>
                     </div>
                   </div>
                 </div>
@@ -58,7 +58,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters." value = "PW"/>
+                      <input type="password" class="form-control" name="password" id="password"  required="" placeholder="Enter your Password. You can enter special characters." value = ""/>
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="confirm_password" id="confirm" required="" placeholder="Confirm your Password" value = "X"/>
+                      <input type="password" class="form-control" name="confirm_password" id="confirm" required="" placeholder="Confirm your Password" value = ""/>
                     </div>
                   </div>
                 </div>
