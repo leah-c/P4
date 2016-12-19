@@ -1,20 +1,17 @@
 @extends('layouts.master')
 
-
 @section('title')
-Expense Tracker
+  Expense Tracker
 @endsection
 
-
-{{--
-  This `head` section will be yielded right before the closing </head> tag.
-  Use it to add specific things that *this* View needs in the head,
-  such as a page specific stylesheets.
+  {{--
+    This `head` section will be yielded right before the closing </head> tag.
+    Use it to add specific things that *this* View needs in the head,
+    such as a page specific stylesheets.
   --}}
   @section('head')
 
   @endsection
-
 
   @section('content')
 
@@ -26,6 +23,7 @@ Expense Tracker
 
       <div class="modal-body">
         <div class="row">
+
           <div class="col-xs-6">
             <div class="well">
 
@@ -36,7 +34,8 @@ Expense Tracker
                 <p class="lead">Existing Users Sign In</p>
 
                 <div class="form-group">
-                  <label for="email" class="cols-sm-2 control-label">Email</label>
+
+                  <label class="cols-sm-2 control-label">Email</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -48,7 +47,7 @@ Expense Tracker
                 </div>
 
                 <div class="form-group">
-                  <label for="password" class="cols-sm-2 control-label">Password</label>
+                  <label  class="cols-sm-2 control-label">Password</label>
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -77,7 +76,7 @@ Expense Tracker
 
             <p><a href="/register" class="btn btn-info btn-block">Sign Me Up!</a></p>
           </div>
-        </div>
+        </div> <!--class="row"-->
       </div> <!--class="modal-body"-->
     </div> <!--class="modal-content"-->
   </div> <!--class="modal-overlay"-->

@@ -38,7 +38,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar fa" aria-hidden="true"></i></span>
-                      <input type="date" class="form-control" name="expense_date" id="dateOfExpense"  required="" placeholder="yyyy-mm-dd" value = "2015-03-03"/>
+                      <input type="date" class="form-control" name="expense_date" id="dateOfExpense"  required="" value = ""/>
                     </div>
                     <div class='error'>{{ $errors->first('expense_date') }}</div>
                   </div>
@@ -50,7 +50,7 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-usd fa-lg" aria-hidden="true"></i></span>
-                      <input type="numeric" class="form-control" name="amount" id="expenseAmount"  required="" placeholder="Expense Amount" value = "10.00"/>
+                      <input type="text" class="form-control" name="amount" id="expenseAmount"  required="" placeholder="Expense Amount" value = ""/>
                     </div>
                     <div class='error'>{{ $errors->first('amount') }}</div>
                   </div>
@@ -87,15 +87,16 @@ Expense Tracker
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+  @endsection
 
-        @endsection
-
-        {{--
-          This `body` section will be yielded right before the closing </body> tag.
-          Use it to add specific things that *this* View needs at the end of the body,
-          such as a page specific JavaScript files.
-          --}}
-          @section('body')
-          @endsection
+  {{--
+    This `body` section will be yielded right before the closing </body> tag.
+    Use it to add specific things that *this* View needs at the end of the body,
+    such as a page specific JavaScript files.
+    --}}
+    @section('body')
+    @endsection

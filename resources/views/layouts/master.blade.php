@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>
-
     @yield('title', 'Expense Tracker')
   </title>
 
@@ -15,13 +14,12 @@
   <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" >
 
   <link href="/css/style.css" type='text/css' rel='stylesheet'>
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
   {{-- Yield any page specific CSS files or anything else you might want in the <head> --}}
     @yield('head')
 
   </head>
   <body>
-    <!--start edit-->
 
     <div id="app">
       <nav class="navbar navbar-default navbar-static-top">
@@ -43,14 +41,14 @@
               <li><a href="{{ url('/') }}">Login</a></li>
               <li><a href="{{ url('/register') }}">Register</a></li>
               @else
-              <li><a href="#"><span class="fa fa-user"></span>{{  Auth::user()->name }}</a></li>
+              <li><a href="/expenses/home"><span class="fa fa-user"></span>{{  Auth::user()->name }}</a></li>
               <li><a href="{{ url('/logout') }}">Logout</a></li>
               @endif
             </ul>
           </div>
         </div>
       </nav>
-      <!--end edit-->
+
       <div class="container">
 
         <section>
@@ -64,13 +62,14 @@
           {{-- Main page content will be yielded here --}}
           @yield('content')
         </section>
-
+        
         <footer>
         </footer>
 
         {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
         @yield('body')
       </div>
+    </div>
 
-    </body>
-    </html>
+  </body>
+  </html>
