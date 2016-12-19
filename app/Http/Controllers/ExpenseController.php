@@ -7,9 +7,9 @@ use DB;
 use App\Expense;
 use App\Category;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
@@ -18,32 +18,29 @@ class ExpenseController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index(Request $request)
+  public function index()
   {
-    $user = $request->user();
+    $user = Auth::user();
+    $hasExpensesToDisplay = false;
 
     if($user) {
-      $expenses = Expense::where('user_id', '=', $user->id)->orderBy('expense_date','DESC')->get();
-    }
-    else {
-      $expenses = [];
-    }
 
-    return view('view_expenses')->with(
-      [
-        'expenses'=> $expenses,
-      ]);
-      /*
       $expenses = DB::table('expenses')
       ->Join('categories', 'categories.id', '=', 'expenses.category_id')
+      ->Join('users','users.id', '=', 'expenses.user_id')
       ->select('expenses.*', 'categories.category_name')
+      ->where('expenses.user_id','=',$user->id)
+      ->orderBy('expenses.expense_date', 'DESC')
       ->get();
 
-      return view('view_expenses')->with(
-      [
-      'expenses'=> $expenses,
-    ]);
-    */
+      return view('view_expenses')->with(['expenses' => $expenses]);
+    }
+
+    else {
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 
   /**
@@ -61,7 +58,6 @@ class ExpenseController extends Controller
         'categories_for_dropdown' => $categories_for_dropdown,
       ]
     );
-
   }
 
   /**
@@ -72,6 +68,9 @@ class ExpenseController extends Controller
   */
   public function store(Request $request)
   {
+
+    $user = Auth::user();
+
     # Validate
     $this->validate($request, [
       'expense_date' => 'required | date',
@@ -84,24 +83,31 @@ class ExpenseController extends Controller
     // figure out how to associate it together
     $selected_category = Category::getCategoryIDByName($request->category_name);
 
-    // store
-    $expense = new Expense;
-    $expense->expense_date = $request->expense_date;
+    if($user){
+      // store
+      $expense = new Expense;
+      $expense->expense_date = $request->expense_date;
 
-    $expense->amount= $request->amount;
-    $expense->category_id= $selected_category->id;
-    $expense->user_id = '1';
+      $expense->amount= $request->amount;
+      $expense->category_id= $selected_category->id;
+      $expense->user_id = $user->id;
 
-    # check to see if an expense desc was created
-    if (isset( $_POST['description']) && $_POST['description'] != '') {
-      $expense->description = Input::get('description');
-    };
+      # check to see if an expense desc was created
+      if (isset( $_POST['description']) && $_POST['description'] != '') {
+        $expense->description = $request->description;
+      };
 
-    $expense->save();
+      $expense->save();
 
-    // redirect
-    Session::flash('message', 'Successfully created a new expense!');
-    return Redirect::to('/expenses');
+      // redirect
+      Session::flash('message', 'Successfully created a new expense!');
+      return Redirect::to('/expenses/home');
+    }
+    else{
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 
 
@@ -117,7 +123,7 @@ class ExpenseController extends Controller
     $expense = Expense::find($id);
 
     if(is_null($expense)) {
-      Session::flash('message','Expense not found.');
+      Session::flash('error_message','Expense not found.');
       return redirect('/expenses/home');
     }
 
@@ -136,8 +142,8 @@ class ExpenseController extends Controller
     $expense = Expense::find($id);
 
     if(is_null($expense)) {
-      Session::flash('message','Expense not found.');
-      return redirect('/expenses');
+      Session::flash('error_message','Expense not found.');
+      return redirect('/expenses/home');
     }
 
     $categories_for_dropdown = Category::getForDropdown();
@@ -159,6 +165,8 @@ class ExpenseController extends Controller
   */
   public function update(Request $request, $id)
   {
+    $user = Auth::user();
+
     # Validate
     $this->validate($request, [
       'expense_date' => 'required | date',
@@ -167,22 +175,28 @@ class ExpenseController extends Controller
       'description' => 'max:50',
     ]);
 
-    # Find and update expense
-    $expense = Expense::find($request->id);
-    $expense->expense_date = $request->expense_date;
-    $expense->amount = $request->amount;
-    $expense->category_id= $request->category_id;
+    if($user){
+      # Find and update expense
+      $expense = Expense::find($request->id);
+      $expense->expense_date = $request->expense_date;
+      $expense->amount = $request->amount;
+      $expense->category_id= $request->category_id;
 
-    # check to see if an expense desc was created
-    if (isset( $_POST['description']) && $_POST['description'] != '') {
-      $expense->description = $request->description;
-    };
+      # check to see if an expense desc was created
+      if (isset( $_POST['description']) && $_POST['description'] != '') {
+        $expense->description = $request->description;
+      };
 
-    $expense->save();
+      $expense->save();
 
-    Session::flash('message', 'Your changes were saved.');
-    return redirect('/expenses');
-
+      Session::flash('message', 'Your changes were saved.');
+      return redirect('/expenses/home');
+    }
+    else{
+      // redirect
+      Session::flash('message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 
   public function delete($id){
@@ -190,8 +204,8 @@ class ExpenseController extends Controller
     $expense = Expense::find($id);
 
     if(is_null($expense)) {
-      Session::flash('message','Cannot complete delete operation. Expense not found.');
-      return redirect('/expenses');
+      Session::flash('error_message','Cannot complete delete operation. Expense not found.');
+      return redirect('/expenses/home');
     }
 
     $categories_for_dropdown = Category::getForDropdown();
@@ -211,20 +225,28 @@ class ExpenseController extends Controller
   */
   public function destroy($id)
   {
-    # Get the book to be deleted
+    $user = Auth::user();
+    # Get the expense to be deleted
     $expense = Expense::find($id);
 
-    if(is_null($expense)) {
-      Session::flash('message','Expense not found.');
-      return redirect('/expenses');
+    if($user){
+      if(is_null($expense)) {
+        Session::flash('error_message','Expense not found.');
+        return redirect('/expenses/home');
+      }
+
+
+      # Then delete the book
+      $expense->delete();
+
+      # Finish
+      Session::flash('message', 'Expense entered for ' . $expense->expense_date . ' in the amount of $'. $expense->amount.' was deleted.');
+      return redirect('/expenses/home');
     }
-
-
-    # Then delete the book
-    $expense->delete();
-
-    # Finish
-    Session::flash('message', 'Expense entered for ' . $expense->expense_date . ' in the amount of $'. $expense->amount.' was deleted.');
-    return redirect('/expenses');
+    else {
+      // redirect
+      Session::flash('error_message', 'You are not logged in. Please log in to view and edit expense information.');
+      return Redirect::to('/');
+    }
   }
 }
