@@ -19,6 +19,9 @@ Route::post('/expenses/home', 'ExpenseController@index')->name('expense.index');
 # Show all expenses when user clicks cancel upon editin or adding an expense
 Route::get('/expenses/home', 'ExpenseController@index')->name('expense.index');
 
+# Show all expenses after log in
+Route::get('/expenses/home/category_totals', 'ExpenseController@viewCategoryTotals')->name('expense_totals');
+
 # Show a form to add an expense
 Route::get('/expenses/create', 'ExpenseController@create')->name('expense.create');
 
