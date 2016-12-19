@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Expense;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
 
 class IndexController extends Controller
 {
@@ -12,89 +17,36 @@ class IndexController extends Controller
   *
   * @return \Illuminate\Http\Response
   */
-  public function index()
+  public function index(Request $request)
   {
     #directs user to the Expense Tracker sign in/ registration page
     return view('index');
-
   }
 
-  public function homepage()
+  public function validateLogin(Request $request)
   {
-    #directs user to the Expense Tracker sign in/ registration page
-    #return view('home');
+    # Validate
+    $this->validate($request, [
+      'email' => 'required | email',
+      'password' => 'required | min:6',
 
-    #$expenses = Expense::orderBy('expense_date','descending')->get(); LeahC 12/16
-    #dump($expenses);
-    #                    with(what you want to call it in the view, var name)
-    #return view('home')->with('expenses', $expenses);
-    #as an Array
-    #return view('home')->with(['expenses'=> $expenses]); LeahC 12/16
-    return view('home');
-  }
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    //
-  }
+    ]);
 
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request)
-  {
-    //
-  }
+    // create our user data for the authentication
+    $userdata = array(
+      'email'     => $request->email,
+      'password'  => $request->password
+    );
+    // attempt to do the login
+    if (Auth::attempt($userdata)) {
 
-  /**
-  * Display the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function show($id)
-  {
-    //
-  }
+      // validation successful!
+      return Redirect::to('/expenses/home');
 
-  /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function edit($id)
-  {
-    //
-  }
-
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function update(Request $request, $id)
-  {
-    //
-  }
-
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function destroy($id)
-  {
-    //
+    } else {
+      // validation not successful, send back to form
+      Session::flash('error_message', 'Your credentials were invalid. Please try logging in again.');
+      return Redirect::to('/');
+    }
   }
 }
