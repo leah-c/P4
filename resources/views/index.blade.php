@@ -29,8 +29,7 @@ Expense Tracker
           <div class="col-xs-6">
             <div class="well">
 
-              <!--<form id="loginForm" method="POST" action = "/home">-->
-              <form id="loginForm" method="POST" action = "/expenses/home">
+              <form id="loginForm" method="POST" action = "/login">
 
                 {{ csrf_field() }}
 
@@ -41,9 +40,10 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                      <input type="text" class="form-control" name="email" required="" title="Please enter your email" placeholder="Email" value = "myEmail">
+                      <input type="text" class="form-control" name="email" required="" title="Please enter your email" placeholder="Email" value = "">
                       <span class="help-block"></span>
                     </div>
+                    <div class='error'>{{ $errors->first('email') }}</div>
                   </div>
                 </div>
 
@@ -52,18 +52,16 @@ Expense Tracker
                   <div class="cols-sm-10">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                      <input type="password" class="form-control" name="password" placeholder="Password" value="asdfasdfasdfa" required="" title="Please enter your password">
+                      <input type="password" class="form-control" name="password" placeholder="Password" value="" required="" title="Please enter your password">
                       <span class="help-block"></span>
                     </div>
+                    <div class='error'>{{ $errors->first('password') }}</div>
                   </div>
                 </div>
-
-                <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
 
                 <button type="submit" value="login" name="submit" class="btn btn-success btn-block">Login</button>
               </form>
             </div> <!--class="well"-->
-
           </div>
 
           <div class="col-xs-6">
@@ -76,7 +74,8 @@ Expense Tracker
               <li><span class="fa fa-check text-success"></span> Categorize and organize expenses</li>
               <li><span class="fa fa-check text-success"></span> View snapshot of spending habits</li>
             </ul>
-            <p><a href="register_new_account" class="btn btn-info btn-block">Sign Me Up!</a></p>
+
+            <p><a href="/register" class="btn btn-info btn-block">Sign Me Up!</a></p>
           </div>
         </div>
       </div> <!--class="modal-body"-->
