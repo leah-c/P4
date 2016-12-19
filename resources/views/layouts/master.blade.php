@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>
-    {{-- Yield the title if it exists, otherwise default to 'Foobooks' --}}
+
     @yield('title', 'Expense Tracker')
   </title>
 
@@ -21,30 +21,56 @@
 
   </head>
   <body>
+    <!--start edit-->
 
-    <!-- will be used to show any messages -->
+    <div id="app">
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
 
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="{{ url('/') }}">
+              {{ config('app.name', 'Expense Tracker') }}
+            </a>
+          </div>
 
-    <div class="container">
-      <header>
-        <!--<h1 id="app_name">Expense Tracker</h1>-->
-      </header>
+          <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-      <section>
-        @if (Session::has('message'))
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+              <!-- Authentication Links -->
+              @if (Auth::guest())
+              <li><a href="{{ url('/') }}">Login</a></li>
+              <li><a href="{{ url('/register') }}">Register</a></li>
+              @else
+              <li><a href="#"><span class="fa fa-user"></span>{{  Auth::user()->name }}</a></li>
+              <li><a href="{{ url('/logout') }}">Logout</a></li>
+              @endif
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!--end edit-->
+      <div class="container">
+
+        <section>
+          <!-- will be used to show any messages -->
+          @if (Session::has('message'))
           <div class="alert alert-success">{{ Session::get('message') }}</div>
-        @endif
-        
-        {{-- Main page content will be yielded here --}}
-        @yield('content')
-      </section>
+          @elseif (Session::has('error_message'))
+          <div class="alert alert-danger">{{ Session::get('error_message') }}</div>
+          @endif
 
-      <footer>
-      </footer>
+          {{-- Main page content will be yielded here --}}
+          @yield('content')
+        </section>
 
-      {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
-      @yield('body')
-    </div>
+        <footer>
+        </footer>
 
-  </body>
-  </html>
+        {{-- Yield any page specific JS files or anything else you might want at the end of the body --}}
+        @yield('body')
+      </div>
+
+    </body>
+    </html>
