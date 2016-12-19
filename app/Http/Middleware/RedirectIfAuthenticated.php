@@ -22,10 +22,6 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }
-        elseif(Auth::guest()){
-          Session::flash('error_message', 'You need to be logged in to perform this action.');
-          return redirect('/');
-        }
         return $next($request);
     }
 }
